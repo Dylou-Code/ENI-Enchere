@@ -17,7 +17,7 @@ public class registerManager {
 	
 	//contructeur par défaut
     public registerManager() {
-    	utilisateurDAO = new DAOFactory().GetUtilisateurDAO(); // Initialisation  du  DAO des utilisateurs
+    	utilisateurDAO = new DAOFactory().getUtilisateurDAO(); // Initialisation  du  DAO des utilisateurs
     }
     
     

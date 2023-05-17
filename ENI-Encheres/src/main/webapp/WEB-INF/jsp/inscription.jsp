@@ -23,13 +23,13 @@
   </div>
   
   <div class="col-md-6">
-    <label for="inputCity" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputCity" name="email" required>
+    <label for="inputEmail" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail" name="email" required>
   </div>
   
    <div class="col-md-6">
-    <label for="inputCity" class="form-label">Telephone</label>
-    <input type="text" class="form-control" id="inputCity" name="phoneNumber" required>
+    <label for="inputphoneNumber" class="form-label">Telephone</label>
+    <input type="text" class="form-control" id="inputphoneNumber" name="phoneNumber" required>
   </div>
   
    <div class="col-md-6">

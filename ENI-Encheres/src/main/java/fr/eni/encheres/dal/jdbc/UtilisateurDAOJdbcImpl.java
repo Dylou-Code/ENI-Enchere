@@ -1,7 +1,10 @@
+/**
+ * 
+ */
 package fr.eni.encheres.dal.jdbc;
 
 import java.sql.Connection;
-
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,45 +14,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateurs;
-import fr.eni.encheres.dal.interfaces.UtilisateursDAO;
-import fr.eni.encheres.exceptions.DALException;
-import fr.eni.encheres.dal.connection.ConnectionProvider;
+import fr.eni.encheres.dal.UtilisateurDAO;
+import fr.eni.encheres.dal.DALException;
 
-
-public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{	
-	public final String SELECT_ALL = "SELECT * FROM UTILISATEURS";
-	public final String SELECT_PSEUDOS = "SELECT pseudo FROM UTILISATEURS";
-	public final String SELECT_EMAILS = "SELECT email FROM UTILISATEURS";
-	public final String SELECT_USER_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo=?";
-	public final String SELECT_USER_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email=?";
-	public final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=?";
-	public final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe) VALUES (?,?,?,?,?,?,?,?,?)";
-
-	//toujours faire des PreparedStatement pour éviter injectionSQL
+public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{	
+	
 	public List<Utilisateurs> getAllUsers() throws DALException{
 		List<Utilisateurs> resultat = new ArrayList<>();
 		
-		try(Connection con = ConnectionProvider.getConnection()){ 
-			PreparedStatement pst = con.prepareStatement(SELECT_ALL);
-			ResultSet rs = pst.executeQuery(SELECT_ALL);
+		try(Connection con = JdbcTools.getConnection();
+			Statement stmt = con.createStatement();){
+			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while(rs.next()) {
-				Utilisateurs utilisateur = new Utilisateurs();
-				utilisateur.setId(rs.getInt("no_utilisateur"));
-				utilisateur.setPseudo(rs.getString("pseudo"));
-				utilisateur.setFirstName(rs.getString("nom"));
-				utilisateur.setLastName(rs.getString("prenom"));
-				utilisateur.setPhoneNumber(rs.getString("telephone"));
-				utilisateur.setEmail(rs.getString("email"));
-				utilisateur.setStreet(rs.getString("rue"));
-				utilisateur.setZipCode(rs.getString("code_postal"));
-				utilisateur.setCity(rs.getString("ville"));
-				utilisateur.setCity(rs.getString("ville"));
-				utilisateur.setCredit(rs.getInt("credit"));
-				utilisateur.setAdmin(rs.getBoolean("administrateur"));
+				int id = rs.getInt("no_utilisateur");
+				String pseudo = rs.getString("pseudo");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String tel = rs.getString("telephone");
+				String rue = rs.getString("rue");
+				String cp = rs.getString("code_postal");
+				String ville = rs.getString("ville");
+				String mdp = rs.getString("mot_de_passe");
+				int credit = rs.getInt("credit");
+				boolean admin = rs.getBoolean("administrateur");
 				
 				resultat.add(new Utilisateurs(id,pseudo,nom,prenom,email,tel,rue,cp,ville,mdp,credit,admin));
 			}
-			return utilisateur;
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -62,9 +53,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 	public List<String> getPseudos() throws DALException{
 		List<String> resultat = new ArrayList<>();
 		
-		try(Connection con = ConnectionProvider.getConnection()){
-			PreparedStatement pst = con.prepareStatement(SELECT_PSEUDOS);
-			ResultSet rs = pst.executeQuery(SELECT_PSEUDOS);
+		try(Connection con = JdbcTools.getConnection();
+			Statement stmt = con.createStatement();){
+			ResultSet rs = stmt.executeQuery(SELECT_PSEUDOS);
 			while(rs.next()) {
 				String pseudo = rs.getString("pseudo");
 				resultat.add(pseudo);
@@ -191,73 +182,4 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 		
 		return resultat;
 	}
-	
-	public Utilisateurs getUserById(int id) throws DALException{
-		Connection con=null;
-		PreparedStatement pStmt= null;
-		Utilisateurs resultat = null;
-		
-		try {
-			con = JdbcTools.getConnection();
-			pStmt = con.prepareStatement(SELECT_USER_BY_ID);
-			pStmt.setInt(1, id);
-			
-			ResultSet rs = pStmt.executeQuery();
-			
-			if(rs.next()) {
-				String pseudo = rs.getString("pseudo");
-				String nom = rs.getString("nom");
-				String prenom = rs.getString("prenom");
-				String email = rs.getString("email");
-				String tel = rs.getString("telephone");
-				String rue = rs.getString("rue");
-				String cp = rs.getString("code_postal");
-				String ville = rs.getString("ville");
-				String mdp = rs.getString("mot_de_passe");
-				int credit = rs.getInt("credit");
-				boolean admin = rs.getBoolean("administrateur");
-						
-				resultat = new Utilisateurs(id,pseudo,nom,prenom,email,tel,rue,cp,ville,mdp,credit,admin);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DALException("Impossible de sélectionner l'utilisateur ayant l'id " + id, e);
-		}finally {
-			try {
-				if(pStmt!=null) {
-					pStmt.close();
-				}
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new DALException("Impossible de sélectionner l'utilisateur ayant l'id " + id, e);
-			}
-		}
-		
-		return resultat;
-	}
-	
-	public void insertUser(Utilisateurs user) throws DALException{
-		try(Connection con = ConnectionProvider.getConnection()){
-			PreparedStatement pStmt = con.prepareStatement(INSERT_USER);
-
-			pStmt.setString(1, user.getPseudo());
-			pStmt.setString(2, user.getLastName());
-			pStmt.setString(3, user.getFirstName());
-			pStmt.setString(4, user.getEmail());
-			pStmt.setString(5, user.getPhoneNumber());
-			pStmt.setString(6, user.getStreet());
-			pStmt.setString(7, user.getZipCode());
-			pStmt.setString(8, user.getCity());
-			pStmt.setString(9, user.getPassword());
-
-			pStmt.executeUpdate();
-		}
-			
-	} catch(SQLException e) {
-		throw new DALException("Impossible d'insérer l'utilisateur", e);
-	}
-	
-	
 }

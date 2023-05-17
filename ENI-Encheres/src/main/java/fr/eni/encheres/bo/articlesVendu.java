@@ -1,5 +1,7 @@
 package fr.eni.encheres.bo;
 
+import java.time.LocalDate;
+
 /*
  * La classe ArticleVendus regroupe les attribus des colonnes de la table 
  * articles_vendus dans la BDD
