@@ -49,6 +49,11 @@ public class Utilisateurs {
 		}
 
 
+		public Utilisateurs() {
+			super();
+		}
+
+
 		public int getId() {
 			return id;
 		}
@@ -121,6 +126,17 @@ public class Utilisateurs {
 		public void setAdmin(boolean admin) {
 			this.admin = admin;
 		}
-	    
+
+		//permet de débug
+		@Override
+		public String toString() {
+			return "Utilisateurs [id=" + id + ", pseudo=" + pseudo + ", firstName=" + firstName + ", lastName="
+					+ lastName + ", email=" + email + ", phoneNumber=" + phoneNumber + ", street=" + street
+					+ ", zipCode=" + zipCode + ", city=" + city + ", password=" + password + ", credit=" + credit
+					+ ", admin=" + admin + "]";
+		}
+	  
+		
+		
 	    
 }

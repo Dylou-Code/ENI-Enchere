@@ -31,7 +31,7 @@ public class ConnexionServlet extends HttpServlet {
 
         // Définissez les attributs pour les données à transmettre à la JSP
         request.setAttribute("pageTitle", "Connexion");
-        request.getRequestDispatcher("/WEB-INF/jsp/formulaires/connexion.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
     }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

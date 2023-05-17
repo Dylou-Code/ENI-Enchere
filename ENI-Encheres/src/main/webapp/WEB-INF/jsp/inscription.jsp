@@ -1,35 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/reset.css">
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/layout.css">
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/navigation.css">
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<title>Inscription</title>
-</head>
-<body>
+<jsp:include page="../layout/layout.jsp" />
 
+<c:set var="pageTitle" value="Accueil" scope="request" />
 
-
-	<nav>
-    <div class="nav-content">
-      <div class="logo">
-        <a href="#">ENI-ENCHERES</a>
-      </div>
-      <ul class="nav-links">
-        <li><a href="<%= request.getContextPath() %>/Connexion">Connexion</a></li>
-        <li><a href="<%= request.getContextPath() %>/Inscription">S'inscrire</a></li>
-   
-      </ul>
-    </div>
-  </nav>
-  
-
-
-	<form class="row g-3" action="<%= request.getContextPath()%>/Inscription" method="POST">
+<c:set var="content">
+    <div class="container">
+      <form class="row g-3" action="<%= request.getContextPath()%>/Inscription" method="POST">
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Pseudo</label>
     <input type="text" class="form-control" id="inputEmail4" name="pseudo" value="" required>
@@ -95,5 +72,7 @@
 
 
 
-</body>
-</html>
+    </div>
+</c:set>
+
+	

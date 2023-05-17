@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.registerManager;
+import fr.eni.encheres.bll.utilisateurManager;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.UtilisateurDAO;
+import projetEncheres.eni.fr.BLL.UtilisateursManager;
+import projetEncheres.eni.fr.IHM.Exception;
+import projetEncheres.eni.fr.IHM.SQLException;
 
 /**
  * Servlet implementation class InscriptionServlet
@@ -26,12 +30,10 @@ public class InscriptionServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	//Url inscription
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/formulaires/inscription.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 	}
 
 	/**
@@ -40,7 +42,7 @@ public class InscriptionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
 				
-		
+		/*
 				String pseudo = request.getParameter("pseudo");
 		        String firstName = request.getParameter("firstName");
 		        String lastName = request.getParameter("lastName");
@@ -50,24 +52,49 @@ public class InscriptionServlet extends HttpServlet {
 		        String zipCode = request.getParameter("zipCode");
 		        String city = request.getParameter("city");
 		        String password = request.getParameter("password");
-		        String confirmPassword = request.getParameter("confirmPassword");
+		        String confirmPassword = request.getParameter("confirmPassword");*/
 		        
 		        
-		       if(password == confirmPassword) {
-		    	   
-			     registerManager inputRegister = new registerManager();
-			        try {
-			        	inputRegister.register(pseudo, firstName, lastName, email, phoneNumber, street, zipCode, city, confirmPassword);
-			        } catch (Exception e) {
-			            // TODO Auto-generated catch block
-			            e.printStackTrace();
-			        }
-
-			        response.sendRedirect("/WEB-INF/jsp/Home.jsp");
-		    	   
-		       } else {
-		    	   System.out.println("Veuillez vérifier vos informations");
-		       }
+		        if(!request.getParameter("pseudo").isEmpty()
+		    			&& !request.getParameter("firstName").isEmpty() 
+		    			&& !request.getParameter("lastName").isEmpty() 
+		    			&& !request.getParameter("email").isEmpty() 
+		    			&& !request.getParameter("phoneNumber").isEmpty()
+		    			&& !request.getParameter("zipCode").isEmpty()
+		    			&& !request.getParameter("cp").isEmpty()
+		    			&& !request.getParameter("ville").isEmpty()
+		    			&& !request.getParameter("password").isEmpty()
+		    			&& !request.getParameter("confirmPassword").isEmpty()) {
+		    			if(request.getParameter("password").equals(request.getParameter("confirmPassword"))) {
+		    				
+		    				Utilisateurs Utilisateurs = new Utilisateurs(0, request.getParameter("pseudo"), 
+		    						request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("email"), 
+		    						request.getParameter("tel"), request.getParameter("rue"), request.getParameter("cp"), 
+		    						request.getParameter("ville"), request.getParameter("pswd"), 100, false);
+		    				
+		    				try {
+		    					
+		    					utilisateurManager.getInstance().register(Utilisateurs);;
+		    					request.setAttribute("valide", "Vous êtes bien inscrit");
+		    					
+		    				} catch (SQLException e) {
+		    					
+		    					request.setAttribute("message", "Le pseudo ou l'adresse mail est déjà utilisé");
+		    					e.printStackTrace();
+		    					
+		    				} catch (Exception e) {
+		    					
+		    					request.setAttribute("message", "Une erreur s'est produite lors de la création");
+		    					e.printStackTrace();
+		    				}
+		    			}else {
+		    				request.setAttribute("message", "Le mot de passe doit être le même que la confirmation");
+		    			}
+		    		}else {
+		    			request.setAttribute("message", "Tous les champs doivent être remplis");
+		    		}
+		    		
+		    		doGet(request, response);
 		        
 		    }
 
