@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< Updated upstream:ENI-Encheres/src/main/java/fr/eni/encheres/servlet/test.java
 /**
  * Servlet implementation class test
  */
@@ -18,16 +19,22 @@ public class test extends HttpServlet {
      * Default constructor. 
      */
     public test() {
+=======
+@WebServlet("/Encheres")
+public class EncheresServlets extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public EncheresServlets() {
+        super();
+>>>>>>> Stashed changes:ENI-Encheres/src/main/java/fr/eni/encheres/servlets/EncheresServlets.java
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+<<<<<<< Updated upstream:ENI-Encheres/src/main/java/fr/eni/encheres/servlet/test.java
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,3 +45,6 @@ public class test extends HttpServlet {
 	}
 
 }
+=======
+}
+>>>>>>> Stashed changes:ENI-Encheres/src/main/java/fr/eni/encheres/servlets/EncheresServlets.java
