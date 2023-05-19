@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * Elle dispose aussi d'attributs en relation avec d'autres classes qui 
  * correspond aux clés étrangères de la table dans la bdd 
  */
-public class articlesVendu {
+public class ArticlesVendu {
 	private int no_article; 
 	private String articleName; 
 	private String description; 
@@ -24,12 +24,12 @@ public class articlesVendu {
 	
 	
 	//initilisation du constructeur par default 
-	public articlesVendu() {
-		super();;
+	public ArticlesVendu() {
+		super();
 	}
 
 
-	public articlesVendu(int no_article, String articleName, String description, LocalDate dateStartEnchere,
+	public ArticlesVendu(int no_article, String articleName, String description, LocalDate dateStartEnchere,
 			LocalDate dateEndEnchere, int prixInitial, int prixVente, Utilisateurs utilisateur, Categories categorie,
 			String etat_vente, String image, Retraits retrait) {
 		super();

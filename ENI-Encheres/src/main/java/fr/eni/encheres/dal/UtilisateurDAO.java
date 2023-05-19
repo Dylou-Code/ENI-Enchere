@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateurs;
 
-public interface UtilisateurDAO {
+public abstract interface UtilisateurDAO {
 	
 	public final String SELECT_ALL = "Select * FROM Utilisateurs";
 	public final String SELECT_PSEUDOS = "Select pseudo FROM Utilisateurs";

@@ -3,10 +3,14 @@ package fr.eni.encheres.dal.jdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
+import fr.eni.encheres.bo.Encheres;
 import fr.eni.encheres.dal.connection.ConnectionProvider;
 import fr.eni.encheres.exceptions.DALException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EncheresDAOJdbcImpl {
 	public final String SELECT_ALL = "SELECT * FROM ENCHERES";
@@ -16,7 +20,7 @@ public class EncheresDAOJdbcImpl {
 	public List<Encheres> getAllAuctions() throws DALException {
 		List<Encheres> resultat = new ArrayList<>();
 		
-		try(Connection con = ConnectionProvider.getConnection()){
+		try(Connection con = ConnectionProvider.connection()){
 			PreparedStatement pst = con.prepareStatement(SELECT_ALL);
 			ResultSet rs = pst.executeQuery(SELECT_ALL);
 			

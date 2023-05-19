@@ -11,18 +11,26 @@ import javax.sql.DataSource;
 import fr.eni.encheres.exceptions.ExceptionTechnique;
 
 public abstract class ConnectionProvider {
+	private static Context context;
 	private static DataSource datasource;
 	
+	private static boolean initialisationOK = true;
 	
 	static {
 		try {
-			Context context = new InitialContext();
+			context = new InitialContext();
 			datasource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");
 		} catch (NamingException e) {
 			e.printStackTrace();
+			initialisationOK = false;
 		}
 	}
-	public static Connection getConnection() throws SQLException {
-		return datasource.getConnection();
+	
+	public static Connection connection() throws SQLException {
+		if(initialisationOK) {
+			return datasource.getConnection();
+		}
+		throw new ExceptionTechnique("Echec de l'initialisation de la connexion JDBC");
 	}
+
 }
