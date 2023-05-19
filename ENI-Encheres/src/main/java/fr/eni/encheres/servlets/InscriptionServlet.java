@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bll.registerManager;
 import fr.eni.encheres.bll.utilisateurManager;
 import fr.eni.encheres.bo.Utilisateurs;
-import fr.eni.encheres.dal.UtilisateurDAO;
+import fr.eni.encheres.dal.interfaces.UtilisateursDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Servlet implementation class InscriptionServlet

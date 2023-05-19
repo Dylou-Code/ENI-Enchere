@@ -2,6 +2,16 @@
     pageEncoding="ISO-8859-1"%>
 <jsp:include page="../layout/layout.jsp" />
 
+<%-- <c:if test="${not empty erreurs}">
+     <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            var erreurs = ${erreurs};
+            var message = "Erreurs lors de l'inscription :\n" + erreurs.join("\n");
+            alert(message);
+        });
+    </script>
+</c:if> --%>
+
 <c:set var="pageTitle" value="Accueil" scope="request" />
 
 <c:set var="content">
@@ -69,8 +79,6 @@
     <button type="submit" class="btn btn-primary">Annuler</button>
   </div>
 </form>
-
-
 
     </div>
 </c:set>

@@ -49,7 +49,7 @@ public class utilisateurManager {
 	}
 	
 	// public String register(Ustilisateurs utilisateur)
-    public String register(Utilisateurs utilisateurs) throws DALException, BllException {
+    public String register(Utilisateurs user) throws DALException, BllException {
     	
     	/*utiliser juste sa*/
     	//utilisateurDAO.insertUser(utilisateurs);
@@ -60,18 +60,17 @@ public class utilisateurManager {
     	List<String> pseudos = utilisateurDAO.getPseudos();
     	
     	//etape de vei
-    	if (emails.contains(email)) {
+    	if (emails.contains(user.getEmail())) {
     		//Ajoute ton message d'erreur à ta liste d'exception 
     		bllException.addErreur("Un compte est déjà associé a cet adresse mail");
     		//tu fais remonter ton erreurs dans ta servlets soit la couche au dessus de la BLL
     		throw bllException ;
     	}
-    	if (pseudos.contains(pseudo)) {
+    	if (pseudos.contains(user.getPseudo())) {
     		bllException.addErreur("Un compte est déjà associé à ce pseudo.");
     		throw bllException ;
     	}
-    	if (isValid(password)) {
-    		Utilisateurs user = new Utilisateurs(pseudo, firstName, lastName, email, phoneNumber, street, zipCode, city, password);
+    	if (isValid(user.getPassword())) {
     		utilisateurDAO.insertUser(user);
     		return "Le compte a été créé avec succès.";
     	} else {

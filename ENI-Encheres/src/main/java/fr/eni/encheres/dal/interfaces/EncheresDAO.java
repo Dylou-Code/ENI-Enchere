@@ -5,7 +5,7 @@ import java.util.List;
 import fr.eni.encheres.bo.Encheres;
 import fr.eni.encheres.exceptions.DALException;
 
-public interface EncheresDAO {
+public abstract interface EncheresDAO {
 	
 
 	public List<Encheres> getAllAuctions() throws DALException;

@@ -8,11 +8,12 @@ import java.sql.Statement;
 
 import fr.eni.encheres.bo.Encheres;
 import fr.eni.encheres.dal.connection.ConnectionProvider;
+import fr.eni.encheres.dal.interfaces.EncheresDAO;
 import fr.eni.encheres.exceptions.DALException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EncheresDAOJdbcImpl {
+public class EncheresDAOJdbcImpl implements EncheresDAO{
 	public final String SELECT_ALL = "SELECT * FROM ENCHERES";
 	public final String SELECT_BY_ID_USER = "SELECT * FROM ENCHERES WHERE no_utilisateur=?";
 	public final String INSERT_AUCTION = "INSERT INTO ENCHERES(date_enchere, montant_enchere, no_article, no_utilisateur) VALUES (?,?,?,?)";

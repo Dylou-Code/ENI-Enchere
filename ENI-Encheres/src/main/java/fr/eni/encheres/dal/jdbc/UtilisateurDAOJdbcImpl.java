@@ -14,11 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateurs;
-import fr.eni.encheres.dal.UtilisateurDAO;
 import fr.eni.encheres.dal.connection.ConnectionProvider;
-import fr.eni.encheres.dal.DALException;
+import fr.eni.encheres.dal.interfaces.UtilisateursDAO;
+import fr.eni.encheres.exceptions.DALException;
 
-public class UtilisateurDAOJdbcImpl implements UtilisateurDAO{	
+
+public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{	
 	
 	public final String SELECT_ALL = "SELECT * FROM UTILISATEURS";
 	public final String SELECT_PSEUDOS = "SELECT pseudo FROM UTILISATEURS";

@@ -5,7 +5,7 @@ import java.util.List;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.exceptions.DALException;
 
-public interface UtilisateursDAO {
+public abstract interface UtilisateursDAO {
 
 	public abstract List<Utilisateurs> getAllUsers() throws DALException;
 	public abstract List<String> getPseudos() throws DALException;
