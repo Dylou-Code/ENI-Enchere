@@ -36,4 +36,8 @@
 </c:set>-->
 	
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 2dc643066504390e8c9b7f8b6ab250cdc2f1f3f5
