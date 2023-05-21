@@ -1,16 +1,21 @@
 package fr.eni.encheres.bo;
 
+
 public class Categories {
 
 	private int id;
 	private String name;
 	
+	public Categories() {
+		super();
+	} 
 	
 	public Categories(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
+	
 
 
 	public int getId() {

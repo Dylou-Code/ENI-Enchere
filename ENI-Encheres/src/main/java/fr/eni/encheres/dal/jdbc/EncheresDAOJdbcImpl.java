@@ -43,16 +43,15 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 		return resultat;
 	}
 
-	public Encheres getAllAuctionsByIdUser(int idUser) throws DALException {
-		Connection con=null;
-		PreparedStatement pStmt= null;
+	public Encheres getAllAuctionsByIdUser(int id) throws DALException {
+		//Connection con=null;
+		//PreparedStatement pStmt= null;
 		List<Encheres> resultat = new ArrayList<>();
 		
-		try {
-			con = JdbcTools.getConnection();
-			pStmt = con.prepareStatement(SELECT_BY_ID_USER);
+		try(Connection con = ConnectionProvider.connection()){
+			PreparedStatement pStmt = con.prepareStatement(SELECT_BY_ID_USER);
 			
-			pStmt.setInt(1, idUser);
+			pStmt.setInt(1, id);
 			
 			ResultSet rs = pStmt.executeQuery();
 			
@@ -62,13 +61,13 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 				int montant = rs.getInt("montant_enchere");
 				int idArticle = rs.getInt("no_article");
 						
-				Encheres enchere = new Encheres(id, date, montant, idArticle, idUser);
+				Encheres enchere = new Encheres(id, date, montant, idArticle, id);
 				resultat.add(enchere);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Aucune enchère n'est associé à l'utilisateur ayant pour id : " + idUser, e);
+			throw new DALException("Aucune enchère n'est associé à l'utilisateur ayant pour id : " + id, e);
 		}
 		
 		return (Encheres) resultat;
@@ -76,8 +75,8 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 
 	
 	public void insertAuction(Encheres enchere) throws DALException {
-		try(Connection con = JdbcTools.getConnection();
-				PreparedStatement pStmt = con.prepareStatement(INSERT_AUCTION, Statement.RETURN_GENERATED_KEYS);){
+		try(Connection con = ConnectionProvider.connection()){
+				PreparedStatement pStmt = con.prepareStatement(INSERT_AUCTION, Statement.RETURN_GENERATED_KEYS);
 				pStmt.setDate(1, enchere.getDate());
 				pStmt.setInt(2, enchere.getPrice());
 				pStmt.setInt(3, enchere.getIdArticle());
