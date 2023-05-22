@@ -97,7 +97,8 @@ public class utilisateurManager {
     	List<String> emails = utilisateurDAO.getEmails();
     	List<String> pseudos = utilisateurDAO.getPseudos();
     	List<Utilisateurs> users = utilisateurDAO.getAllUsers();
-        Utilisateurs result =  null;
+        Utilisateurs result = null;
+        
         if (emails.contains(identifiant)) {
         	for (String e : emails) {
         		for (Utilisateurs user : users) {
@@ -116,7 +117,6 @@ public class utilisateurManager {
         		}
         	}
         }
-        
         return result;
     }
 	

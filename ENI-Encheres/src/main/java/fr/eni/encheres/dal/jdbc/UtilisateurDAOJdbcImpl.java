@@ -42,12 +42,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 				user.setPseudo(rs.getString("pseudo"));
 				user.setFirstName(rs.getString("nom"));
 				user.setLastName(rs.getString("prenom"));
-				user.setPhoneNumber(rs.getString("telephone"));
 				user.setEmail(rs.getString("email"));
+				user.setPhoneNumber(rs.getString("telephone"));
 				user.setStreet(rs.getString("rue"));
 				user.setZipCode(rs.getString("code_postal"));
 				user.setCity(rs.getString("ville"));
-				user.setCity(rs.getString("ville"));
+				user.setPassword(rs.getString("mot_de_passe"));
 				user.setCredit(rs.getInt("credit"));
 				user.setAdmin(rs.getBoolean("administrateur"));
 				

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bo.Utilisateurs;
 
 @WebServlet("/Connexion")
 public class ConnexionServlet extends HttpServlet {
@@ -32,28 +33,33 @@ public class ConnexionServlet extends HttpServlet {
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<String> erreurs = new ArrayList<>();
-		
-		if(!request.getParameter("identifiant").isEmpty()
-				&& !request.getParameter("password").isEmpty()) {
+		if (request.getParameter("btnConnexion") != null) {
+			
+			List<String> erreurs = new ArrayList<>();
 			
 			String identifiant = request.getParameter("identifiant");
 			String password = request.getParameter("password");
+				try {
+					Utilisateurs testLogin = utilisateurManager.getInstance().login(identifiant, password);
+					if (testLogin != null) {
+						utilisateurManager.getInstance().login(identifiant, password);
+						request.setAttribute("valide", "Vous êtes connecté !");
+						response.sendRedirect("http://localhost:8080/ENI-Encheres/");
+						return;
+					} else {
+						erreurs.add("L'identifiant ou le mot de passe est incorrect !");
+					}
+				} catch (Exception e) {
+		            erreurs.add("Une erreur s'est produite lors de la connexion");
+		            e.printStackTrace();
+		        }
 			
-			try {
-				utilisateurManager.getInstance().login(identifiant, password);
-				request.setAttribute("valide", "Vous êtes connecté !");
-				response.sendRedirect("Profil");
-				return;
-			} catch (SQLException e) {
-	            erreurs.add("L'identifiant ou le mot de passe est incorrect !");
-	            e.printStackTrace();
-	        } catch (Exception e) {
-	            erreurs.add("Une erreur s'est produite lors de la création");
-	            e.printStackTrace();
-	        }
-	    } else {
-	        erreurs.add("Tous les champs doivent être remplis");
-	    }
+			if (!erreurs.isEmpty()) {
+			    request.setAttribute("erreurs", erreurs);
+			}
+		} else if (request.getParameter("btnInscription") != null) {
+			response.sendRedirect("Inscription");
+		}
+		
 	}
 }
