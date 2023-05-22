@@ -19,7 +19,7 @@
       <form class="row g-3" action="<%= request.getContextPath()%>/Inscription" method="POST">
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Pseudo</label>
-    <input type="text" class="form-control" id="inputEmail4" name="pseudo" value="" required>
+    <input type="text" class="form-control" id="inputEmail4" name="pseudo" required>
   </div>
   
   <div class="col-md-6">

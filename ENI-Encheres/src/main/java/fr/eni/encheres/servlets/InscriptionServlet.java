@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.encheres.bll.registerManager;
 import fr.eni.encheres.bll.utilisateurManager;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.interfaces.UtilisateursDAO;

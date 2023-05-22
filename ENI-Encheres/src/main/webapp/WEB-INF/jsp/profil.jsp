@@ -8,12 +8,57 @@
     	<div class="container">
 
 		    	<form>
+<<<<<<< HEAD
 			        <div class="mb-6">
 				      <label for="disabledTextInput" class="form-label">Pseudo recherché :</label>
 				      <input type="text" id="pseudoRecherche" class="form-control" required name="pseudoRecherche">
 				      <br>
 				      <input type="submit" value="Recherche" class="btn btn-primary">
 				    </div>
+=======
+				  <fieldset disabled>
+				    <div class="mb-6">
+				      <label for="disabledTextInput" class="form-label">Pseudo :</label>
+				      <input type="text" id="OutPutPseudo" class="form-control" value="${utilisateur.pseudo}">
+				    </div>
+				    
+				    <div class="mb-6">
+				      <label for="disabledTextInput" class="form-label">Nom :</label>
+				      <input type="text" id="OutPutNom" class="form-control" value="${utilisateur.lastName}">
+				    </div>
+				    
+				    <div class="mb-6">
+				      <label for="disabledTextInput" class="form-label">Prénom :</label>
+				      <input type="text" id="OutPutPrenom" class="form-control" value="${utilisateur.firstName}">
+				    </div>
+				    
+				    <div class="mb-6">
+				      <label for="disabledTextInput" class="form-label">Email :</label>
+				      <input type="text" id="OutPutEmail" class="form-control" value="${utilisateur.email}">
+				    </div>
+				    
+				    <div class="mb-6">
+				      <label for="disabledTextInput" class="form-label">Téléphone :</label>
+				      <input type="text" id="OutPutTelephone" class="form-control" value="${utilisateur.phoneNumber}">
+				    </div>
+				    
+				    <div class="mb-6">
+				      <label for="disabledTextInput" class="form-label">Rue :</label>
+				      <input type="text" id="OutPutRue" class="form-control" value="${utilisateur.street}">
+				    </div>
+				    
+				    <div class="mb-6">
+				      <label for="disabledTextInput" class="form-label">Code Postal :</label>
+				      <input type="text" id="OutPutZip" class="form-control" value="${utilisateur.zipCode}">
+				    </div>
+				    
+				    <div class="mb-6">
+				      <label for="disabledTextInput" class="form-label">Ville :</label>
+				      <input type="text" id="OutPutVille" class="form-control" value="${utilisateur.city}">
+				    </div>
+				    
+				  </fieldset>
+>>>>>>> 2b257a906e97fad2ea8c928c7b296530506b4311
 				</form>
 				
 				<form>
