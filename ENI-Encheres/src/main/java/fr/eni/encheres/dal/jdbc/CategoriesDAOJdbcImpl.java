@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
 
 import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.dal.connection.ConnectionProvider;
@@ -17,10 +18,10 @@ public class CategoriesDAOJdbcImpl implements CategoriesDAO {
 	
 	@Override
 	public List<Categories> SelectALL() throws DALException {
-		//Initilisation d'une liste d'utilisateurs 
+		
 		List<Categories> ListCategorie = new ArrayList<Categories>();
 		
-		// ouvre une connexion à la base de donnée
+		
 		try (Connection con = ConnectionProvider.connection()){
 			//On charge  et prépare la requête pour exécution
 			PreparedStatement pst = con.prepareStatement(SELECT_ALL);

@@ -3,12 +3,14 @@ package fr.eni.encheres.dal.jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
 import java.sql.PreparedStatement;
 
 import fr.eni.encheres.bo.ArticlesVendu;
 import fr.eni.encheres.dal.connection.ConnectionProvider;
 import fr.eni.encheres.dal.interfaces.ArticlesVenduDAO;
 import fr.eni.encheres.exceptions.DALException;
+
 
 /*
  * - gerer update
@@ -24,8 +26,8 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 //			+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
 	//version test
 	public final String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS(nom, description,date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, r\n)"
-			+ "date_fin_enchere, prix_initial, prix_vente,etat_vente, image) \r\n"
-			+ " VALUES (?,?,?,?,?,?,?,?)";
+			+ "date_fin_enchere, prix_initial, prix_vente,etat_vente) \r\n"
+			+ " VALUES (?,?,?,?,?,?,?,?,?)";
 	
 	public final String SELECT_ALL = "select av.no_article, nom_article, av.[description], date_debut_enchere, date_fin_enchere,\\n\"\r\n"
 			+ "	+ \"prix_initial, prix_vente, u.*, c.*, etat_vente \\n\"\r\n"
@@ -70,6 +72,7 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 	public List<ArticlesVendu> SelectAll() throws DALException {
 		// TODO Auto-generated method stub
 		List<ArticlesVendu> vListArticleVendu = new ArrayList<ArticlesVendu>();
+		return null;
 	}
 
 

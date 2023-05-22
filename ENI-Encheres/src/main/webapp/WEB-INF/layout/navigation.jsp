@@ -8,8 +8,9 @@
 <title>ENI-ENCHERES</title>
 </head>
 <body>
-	
-	<nav>
+
+	<header>
+		<nav>
     <div class="nav-content">
       <div class="logo">
         <a href="<%= request.getContextPath() %>/">ENI-ENCHERES</a>
@@ -22,6 +23,9 @@
       </ul>
     </div>
   </nav>
+	</header>
+	
+	
   
   <%-- A gérer--%>
   
