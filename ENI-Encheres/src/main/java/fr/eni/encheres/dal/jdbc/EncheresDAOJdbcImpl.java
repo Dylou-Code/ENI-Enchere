@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Date;
 
 import fr.eni.encheres.bo.Encheres;
 import fr.eni.encheres.dal.connection.ConnectionProvider;
@@ -43,7 +44,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 		return resultat;
 	}
 
-	public Encheres getAllAuctionsByIdUser(int id) throws DALException {
+	public Encheres getAllAuctionsByIdUser(int idUser) throws DALException {
 		//Connection con=null;
 		//PreparedStatement pStmt= null;
 		List<Encheres> resultat = new ArrayList<>();
@@ -51,7 +52,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 		try(Connection con = ConnectionProvider.connection()){
 			PreparedStatement pStmt = con.prepareStatement(SELECT_BY_ID_USER);
 			
-			pStmt.setInt(1, id);
+			pStmt.setInt(1, idUser);
 			
 			ResultSet rs = pStmt.executeQuery();
 			
@@ -67,7 +68,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Aucune enchère n'est associé à l'utilisateur ayant pour id : " + id, e);
+			throw new DALException("Aucune enchère n'est associé à l'utilisateur ayant pour id : " + idUser, e);
 		}
 		
 		return (Encheres) resultat;
@@ -75,9 +76,10 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 
 	
 	public void insertAuction(Encheres enchere) throws DALException {
+		java.sql.Date sqlDate = new java.sql.Date(enchere.getDate().getTime());
 		try(Connection con = ConnectionProvider.connection()){
 				PreparedStatement pStmt = con.prepareStatement(INSERT_AUCTION, Statement.RETURN_GENERATED_KEYS);
-				pStmt.setDate(1, enchere.getDate());
+				pStmt.setDate(1, sqlDate);
 				pStmt.setInt(2, enchere.getPrice());
 				pStmt.setInt(3, enchere.getIdArticle());
 				pStmt.setInt(4, enchere.getIdUser());

@@ -90,15 +90,15 @@ public class utilisateurManager {
     
     
     
-    /*
-     * ------login
-     * 
-     * public Utilisateurs login(String email, String password) throws DALException {
-    	List<String> emails = UtilisateurDAOJdbcImpl.getEmails();
-    	List<String> pseudos = UtilisateurDAOJdbcImpl.getPseudos();
-    	List<Utilisateurs> users = UtilisateurDAOJdbcImpl.getAllUsers();
+    
+    public Utilisateurs login(String identifiant, String password) throws DALException, BllException {
+    	
+    	BllException bllException = new BllException();
+    	List<String> emails = utilisateurDAO.getEmails();
+    	List<String> pseudos = utilisateurDAO.getPseudos();
+    	List<Utilisateurs> users = utilisateurDAO.getAllUsers();
         Utilisateurs result =  null;
-        if (emails.contains(email)) {
+        if (emails.contains(identifiant)) {
         	for (String e : emails) {
         		for (Utilisateurs user : users) {
         			if (e.equals(user.getEmail()) && password.equals(user.getPassword())) {
@@ -107,9 +107,18 @@ public class utilisateurManager {
         		}
         	}
         }
+        if (pseudos.contains(identifiant)) {
+        	for (String s : pseudos) {
+        		for (Utilisateurs user : users) {
+        			if (s.equals(user.getPseudo()) && password.equals(user.getPassword())) {
+        				result = user;
+        			}
+        		}
+        	}
+        }
+        
         return result;
     }
-     * */
 	
 	
 	/*public articlesVendu SelectByID(String id) {

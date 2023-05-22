@@ -10,46 +10,45 @@
 		    	<form>
 				  <fieldset disabled>
 				    <div class="mb-6">
-				      <label for="disabledTextInput" class="form-label">Pseudo</label>
-				      <input type="text" id="OutPutPseudo" class="form-control" placeholder="Recup pseudo">
+				      <label for="disabledTextInput" class="form-label">Pseudo :</label>
+				      <input type="text" id="OutPutPseudo" class="form-control" value="${utilisateur.pseudo}">
 				    </div>
 				    
 				    <div class="mb-6">
-				      <label for="disabledTextInput" class="form-label">Nom</label>
-				      <input type="text" id="OutPutNom" class="form-control" placeholder="Recup nom">
+				      <label for="disabledTextInput" class="form-label">Nom :</label>
+				      <input type="text" id="OutPutNom" class="form-control" value="${utilisateur.lastName}">
 				    </div>
 				    
 				    <div class="mb-6">
-				      <label for="disabledTextInput" class="form-label">Prenom</label>
-				      <input type="text" id="OutPutPrenom" class="form-control" placeholder="Recup prenom">
+				      <label for="disabledTextInput" class="form-label">Prénom :</label>
+				      <input type="text" id="OutPutPrenom" class="form-control" value="${utilisateur.firstName}">
 				    </div>
 				    
 				    <div class="mb-6">
-				      <label for="disabledTextInput" class="form-label">Email</label>
-				      <input type="text" id="OutPutEmail" class="form-control" placeholder="Recup email">
+				      <label for="disabledTextInput" class="form-label">Email :</label>
+				      <input type="text" id="OutPutEmail" class="form-control" value="${utilisateur.email}">
 				    </div>
 				    
 				    <div class="mb-6">
-				      <label for="disabledTextInput" class="form-label">Telephone</label>
-				      <input type="text" id="OutPutTelephone" class="form-control" placeholder="Recup telephone">
+				      <label for="disabledTextInput" class="form-label">Téléphone :</label>
+				      <input type="text" id="OutPutTelephone" class="form-control" value="${utilisateur.phoneNumber}">
 				    </div>
 				    
 				    <div class="mb-6">
-				      <label for="disabledTextInput" class="form-label">Rue</label>
-				      <input type="text" id="OutPutRue" class="form-control" placeholder="Recup rue">
+				      <label for="disabledTextInput" class="form-label">Rue :</label>
+				      <input type="text" id="OutPutRue" class="form-control" value="${utilisateur.street}">
 				    </div>
 				    
 				    <div class="mb-6">
-				      <label for="disabledTextInput" class="form-label">Code Postal</label>
-				      <input type="text" id="OutPutZip" class="form-control" placeholder="Recup zip">
+				      <label for="disabledTextInput" class="form-label">Code Postal :</label>
+				      <input type="text" id="OutPutZip" class="form-control" value="${utilisateur.zipCode}">
 				    </div>
 				    
 				    <div class="mb-6">
-				      <label for="disabledTextInput" class="form-label">Ville</label>
-				      <input type="text" id="OutPutVille" class="form-control" placeholder="Recup ville">
+				      <label for="disabledTextInput" class="form-label">Ville :</label>
+				      <input type="text" id="OutPutVille" class="form-control" value="${utilisateur.city}">
 				    </div>
 				    
-				    <button type="submit" class="btn btn-primary">Modifier mon profil</button>
 				  </fieldset>
 				</form>
 	    </div>

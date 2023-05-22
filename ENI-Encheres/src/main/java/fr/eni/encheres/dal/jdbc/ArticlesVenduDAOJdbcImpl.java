@@ -3,12 +3,14 @@ package fr.eni.encheres.dal.jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
 import java.sql.PreparedStatement;
 
 import fr.eni.encheres.bo.ArticlesVendu;
 import fr.eni.encheres.dal.connection.ConnectionProvider;
 import fr.eni.encheres.dal.interfaces.ArticlesVenduDAO;
 import fr.eni.encheres.exceptions.DALException;
+
 
 /*
  * - gerer update
@@ -70,6 +72,7 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 	public List<ArticlesVendu> SelectAll() throws DALException {
 		// TODO Auto-generated method stub
 		List<ArticlesVendu> vListArticleVendu = new ArrayList<ArticlesVendu>();
+		return null;
 	}
 
 
