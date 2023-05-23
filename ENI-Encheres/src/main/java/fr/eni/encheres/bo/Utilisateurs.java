@@ -16,7 +16,7 @@ public class Utilisateurs {
 	    private boolean admin;
 	    
 	     
-		public Utilisateurs(int id, String pseudo, String firstName, String lastName, String email, String phoneNumber,
+	    public Utilisateurs(int id, String pseudo, String firstName, String lastName, String email, String phoneNumber,
 				String street, String zipCode, String city, String password, int credit, boolean admin) {
 			super();
 			this.id = id;
@@ -31,10 +31,23 @@ public class Utilisateurs {
 			this.password = password;
 			this.credit = credit;
 			this.admin = admin;
-		}
-		
+		}		
 		
 		public Utilisateurs(String pseudo, String firstName, String lastName, String email, String phoneNumber,
+				String street, String zipCode, String city, String password) {
+			super();
+			this.pseudo = pseudo;
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.email = email;
+			this.phoneNumber = phoneNumber;
+			this.street = street;
+			this.zipCode = zipCode;
+			this.city = city;
+			this.password = password;
+		}
+		
+		public Utilisateurs(int id, String pseudo, String firstName, String lastName, String email, String phoneNumber,
 				String street, String zipCode, String city, String password) {
 			super();
 			this.pseudo = pseudo;

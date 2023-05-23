@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.utilisateurManager;
 import fr.eni.encheres.bo.Utilisateurs;
@@ -25,12 +26,17 @@ public class ConnexionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Effectuez ici les traitements nécessaires pour préparer les données de votre page
-
-        // Définissez les attributs pour les données à transmettre à la JSP
-        request.setAttribute("pageTitle", "Connexion");
-        request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
+    	
+    	HttpSession session = request.getSession(false);
+	    
+	    if (session != null && session.getAttribute("utilisateur") != null) {
+	    	response.sendRedirect("http://localhost:8080/ENI-Encheres/");
+	    } else {
+	    	request.setAttribute("pageTitle", "Connexion");
+	        request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
+	    }
     }
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		if (request.getParameter("btnConnexion") != null) {
@@ -39,13 +45,15 @@ public class ConnexionServlet extends HttpServlet {
 			
 			String identifiant = request.getParameter("identifiant");
 			String password = request.getParameter("password");
+			
 				try {
-					Utilisateurs testLogin = utilisateurManager.getInstance().login(identifiant, password);
-					if (testLogin != null) {
-						utilisateurManager.getInstance().login(identifiant, password);
-						request.setAttribute("valide", "Vous êtes connecté !");
-						response.sendRedirect("http://localhost:8080/ENI-Encheres/");
-						return;
+					Utilisateurs utilisateur  = utilisateurManager.getInstance().login(identifiant, password);
+					if (utilisateur != null) {
+						HttpSession session = request.getSession(true);
+		                session.setAttribute("utilisateur", utilisateur);
+		                request.setAttribute("valide", "Vous êtes connecté !");
+		                response.sendRedirect("http://localhost:8080/ENI-Encheres/");
+		                return;
 					} else {
 						erreurs.add("L'identifiant ou le mot de passe est incorrect !");
 					}
@@ -56,6 +64,7 @@ public class ConnexionServlet extends HttpServlet {
 			
 			if (!erreurs.isEmpty()) {
 			    request.setAttribute("erreurs", erreurs);
+			    request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
 			}
 		} else if (request.getParameter("btnInscription") != null) {
 			response.sendRedirect("Inscription");

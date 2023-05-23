@@ -42,6 +42,16 @@
     </div>
 </c:set>
 
+<c:if test="${not empty erreurs}">
+    <div class="errors">
+        <ul>
+            <c:forEach items="${erreurs}" var="erreur">
+                <li>${erreur}</li>
+            </c:forEach>
+        </ul>
+    </div>
+</c:if>
+
 <script>
   function requiredOnClick() {
     var identifiant = document.getElementById('identifiant');

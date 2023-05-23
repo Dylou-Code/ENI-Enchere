@@ -51,7 +51,7 @@
 		    <br>
 		  </fieldset>
 		<form action="<%= request.getContextPath() %>/ModifierMonProfil" method="post">
-        	<button type="submit" class="btn btn-primary" formaction="<%= request.getContextPath() %>/ModifierMonProfil">Modifier mon profil</button>
+        	<button type="submit" class="btn btn-primary">Modifier mon profil</button>
     	</form>
     </div>
 </c:set>

@@ -120,12 +120,16 @@ public class utilisateurManager {
         return result;
     }
 	
-	
-	/*public articlesVendu SelectByID(String id) {
-		// articlesVendu = articleDAO.SelectByID(id)
-		//regarde l'objet utilisateur 
-		//System.out.println(at.toString());
-	}*/
-	
+    public String update(int id, String pseudo, String firstName, String lastName, String email, String phoneNumber, String street, String zipCode, String city, String password) throws DALException, BllException {
+    	BllException bllException = new BllException();
+    	
+    	if (isValid(password)) {
+    		utilisateurDAO.updateUser(id, pseudo, firstName, lastName, email, phoneNumber, street, zipCode, city, password);
+    		return "Le compte a été modifié avec succès";
+    	} else {
+    		bllException.addErreur("Le mot de passe ne correspond pas aux critères de stratégie de mot de passe. (Au minimum : une majucule, une minuscule, un chiffre, un caractère spécial)");
+    		throw bllException ;
+    	}
+	}	
 	
 }
