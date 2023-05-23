@@ -14,4 +14,5 @@ public abstract interface UtilisateursDAO {
 	public abstract Utilisateurs getUserByEmail(String email) throws DALException;
 	public abstract Utilisateurs getUserById(int id) throws DALException;
 	public abstract void insertUser(Utilisateurs user) throws DALException;
+	public abstract void updateUser(Utilisateurs user) throws DALException;
 }

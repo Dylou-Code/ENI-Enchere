@@ -64,3 +64,8 @@
 	    password.required = false;
 	    }
 </script>
+
+	<!-- Ajouter ce code dans les différentes pages-->
+	
+	
+

@@ -90,15 +90,16 @@ public class utilisateurManager {
     
     
     
-    /*
-     * ------login
-     * 
-     * public Utilisateurs login(String email, String password) throws DALException {
-    	List<String> emails = UtilisateurDAOJdbcImpl.getEmails();
-    	List<String> pseudos = UtilisateurDAOJdbcImpl.getPseudos();
-    	List<Utilisateurs> users = UtilisateurDAOJdbcImpl.getAllUsers();
-        Utilisateurs result =  null;
-        if (emails.contains(email)) {
+    
+    public Utilisateurs login(String identifiant, String password) throws DALException, BllException {
+    	
+    	BllException bllException = new BllException();
+    	List<String> emails = utilisateurDAO.getEmails();
+    	List<String> pseudos = utilisateurDAO.getPseudos();
+    	List<Utilisateurs> users = utilisateurDAO.getAllUsers();
+        Utilisateurs result = null;
+        
+        if (emails.contains(identifiant)) {
         	for (String e : emails) {
         		for (Utilisateurs user : users) {
         			if (e.equals(user.getEmail()) && password.equals(user.getPassword())) {
@@ -107,16 +108,28 @@ public class utilisateurManager {
         		}
         	}
         }
+        if (pseudos.contains(identifiant)) {
+        	for (String s : pseudos) {
+        		for (Utilisateurs user : users) {
+        			if (s.equals(user.getPseudo()) && password.equals(user.getPassword())) {
+        				result = user;
+        			}
+        		}
+        	}
+        }
         return result;
     }
-     * */
-	
-	
-	/*public articlesVendu SelectByID(String id) {
-		// articlesVendu = articleDAO.SelectByID(id)
-		//regarde l'objet utilisateur 
-		//System.out.println(at.toString());
-	}*/
-	
-	
+    
+    public String update(Utilisateurs user) throws DALException, BllException {
+    	BllException bllException = new BllException();
+    	
+    	if (isValid(user.getPassword())) {
+    		utilisateurDAO.updateUser(user);
+    		return "Le compte a été modifié avec succès";
+    	} else {
+    		bllException.addErreur("Le mot de passe ne correspond pas aux critères de stratégie de mot de passe. (Au minimum : une majucule, une minuscule, un chiffre, un caractère spécial)");
+    		throw bllException ;
+    	}
+	}
+    
 }

@@ -28,7 +28,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 	public final String SELECT_USER_BY_EMAIL = "SELECT * FROM UTILISATEURS WHERE email=?";
 	public final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=?";
 	public final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe) VALUES (?,?,?,?,?,?,?,?,?)";
-
+	public final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
+	
 	//toujours faire des PreparedStatement pour éviter injectionSQL
 	public List<Utilisateurs> getAllUsers() throws DALException{
 		List<Utilisateurs> resultat = new ArrayList<>();
@@ -40,14 +41,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 				Utilisateurs user = new Utilisateurs();
 				user.setId(rs.getInt("no_utilisateur"));
 				user.setPseudo(rs.getString("pseudo"));
-				user.setFirstName(rs.getString("nom"));
-				user.setLastName(rs.getString("prenom"));
+				user.setLastName(rs.getString("nom"));
+				user.setFirstName(rs.getString("prenom"));
 				user.setPhoneNumber(rs.getString("telephone"));
 				user.setEmail(rs.getString("email"));
 				user.setStreet(rs.getString("rue"));
 				user.setZipCode(rs.getString("code_postal"));
 				user.setCity(rs.getString("ville"));
-				user.setCity(rs.getString("ville"));
+				user.setPassword(rs.getString("mot_de_passe"));
 				user.setCredit(rs.getInt("credit"));
 				user.setAdmin(rs.getBoolean("administrateur"));
 				
@@ -215,5 +216,27 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 		} catch(SQLException e) {
 		throw new DALException("Impossible d'insérer l'utilisateur", e);
 		}
+	}
+	
+	public void updateUser(Utilisateurs user) throws DALException {
+	    try (Connection con = ConnectionProvider.connection()) {
+	        PreparedStatement pStmt = con.prepareStatement(UPDATE_USER);
+
+	        pStmt.setString(1, user.getPseudo());
+	        pStmt.setString(2, user.getLastName());
+	        pStmt.setString(3, user.getFirstName());
+	        pStmt.setString(4, user.getEmail());
+	        pStmt.setString(5, user.getPhoneNumber());
+	        pStmt.setString(6, user.getStreet());
+	        pStmt.setString(7, user.getZipCode());
+	        pStmt.setString(8, user.getCity());
+	        pStmt.setString(9, user.getPassword());
+	        pStmt.setInt(10, user.getId());
+
+	        pStmt.executeUpdate();
+
+	    } catch (SQLException e) {
+	        throw new DALException("Impossible de mettre à jour l'utilisateur", e);
+	    }
 	}
 }
