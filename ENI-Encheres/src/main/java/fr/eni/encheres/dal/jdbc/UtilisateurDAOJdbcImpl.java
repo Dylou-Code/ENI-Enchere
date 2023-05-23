@@ -218,6 +218,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 		}
 	}
 	
+<<<<<<< HEAD
 	public void updateUser(int id, String pseudo, String firstName, String lastName, String email, String phoneNumber, String street, String zipCode, String city, String password) throws DALException {
 	    try (Connection con = ConnectionProvider.connection()) {
 	        PreparedStatement pStmt = con.prepareStatement(UPDATE_USER);
@@ -234,8 +235,31 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 	        pStmt.setInt(10, id);
 	        
 	        pStmt.executeUpdate();
+=======
+	public void updateUser(Utilisateurs user) throws DALException {
+	    try (Connection con = ConnectionProvider.connection()) {
+	        PreparedStatement pStmt = con.prepareStatement(UPDATE_USER);
+
+	        pStmt.setString(1, user.getPseudo());
+	        pStmt.setString(2, user.getLastName());
+	        pStmt.setString(3, user.getFirstName());
+	        pStmt.setString(4, user.getEmail());
+	        pStmt.setString(5, user.getPhoneNumber());
+	        pStmt.setString(6, user.getStreet());
+	        pStmt.setString(7, user.getZipCode());
+	        pStmt.setString(8, user.getCity());
+	        pStmt.setString(9, user.getPassword());
+	        pStmt.setInt(10, user.getId());
+
+	        pStmt.executeUpdate();
+
+>>>>>>> 1578e47f46ce051df220be34d8829b81f641267b
 	    } catch (SQLException e) {
 	        throw new DALException("Impossible de mettre à jour l'utilisateur", e);
 	    }
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1578e47f46ce051df220be34d8829b81f641267b

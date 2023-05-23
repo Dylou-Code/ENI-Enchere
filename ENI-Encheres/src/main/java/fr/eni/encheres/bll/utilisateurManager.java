@@ -119,17 +119,31 @@ public class utilisateurManager {
         }
         return result;
     }
+<<<<<<< HEAD
 	
     public String update(int id, String pseudo, String firstName, String lastName, String email, String phoneNumber, String street, String zipCode, String city, String password) throws DALException, BllException {
     	BllException bllException = new BllException();
     	
     	if (isValid(password)) {
     		utilisateurDAO.updateUser(id, pseudo, firstName, lastName, email, phoneNumber, street, zipCode, city, password);
+=======
+    
+    public String update(Utilisateurs user) throws DALException, BllException {
+    	BllException bllException = new BllException();
+    	
+    	if (isValid(user.getPassword())) {
+    		utilisateurDAO.updateUser(user);
+>>>>>>> 1578e47f46ce051df220be34d8829b81f641267b
     		return "Le compte a été modifié avec succès";
     	} else {
     		bllException.addErreur("Le mot de passe ne correspond pas aux critères de stratégie de mot de passe. (Au minimum : une majucule, une minuscule, un chiffre, un caractère spécial)");
     		throw bllException ;
     	}
+<<<<<<< HEAD
 	}	
 	
+=======
+	}
+    
+>>>>>>> 1578e47f46ce051df220be34d8829b81f641267b
 }

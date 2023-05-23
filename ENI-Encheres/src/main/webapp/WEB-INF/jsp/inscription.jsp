@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <jsp:include page="../layout/layout.jsp" />
 
 <%-- <c:if test="${not empty erreurs}">
@@ -19,7 +20,7 @@
       <form class="row g-3" action="<%= request.getContextPath()%>/Inscription" method="POST">
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Pseudo</label>
-    <input type="text" class="form-control" id="inputEmail4" name="pseudo" required>
+    <input type="text" class="form-control" id="inputEmail4" name="pseudo" value="" required>
   </div>
   
   <div class="col-md-6">

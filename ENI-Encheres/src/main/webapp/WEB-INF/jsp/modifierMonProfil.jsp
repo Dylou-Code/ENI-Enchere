@@ -39,7 +39,11 @@
 			  
 			   <div class="col-md-6">
 			    <label for="inputCity" class="form-label">Code Postal :</label>
+<<<<<<< HEAD
 			    <input type="text" class="form-control" id="zipCode" name="zipCode" value="${utilisateur.zipCode}">
+=======
+			    <input type="text" class="form-control" id="zipCode" name="zipCode" value="${utilisateur.street}">
+>>>>>>> 1578e47f46ce051df220be34d8829b81f641267b
 			  </div>
 			 
 			  <div class="col-md-6">

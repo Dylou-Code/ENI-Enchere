@@ -27,7 +27,11 @@ public class ProfilServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		// Récupérer le pseudo de recherche depuis le formulaire
+=======
+	    // Récupérer le pseudo de recherche depuis le formulaire
+>>>>>>> 1578e47f46ce051df220be34d8829b81f641267b
 	    String pseudoRecherche = request.getParameter("pseudoRecherche");
 
 	    // Créer une instance de DAOFactory
@@ -62,7 +66,11 @@ public class ProfilServlet extends HttpServlet {
 	    } else {
 	        // Gérer le cas où le pseudo n'existe pas dans la base de données
 	        // Par exemple, afficher un message d'erreur ou rediriger vers une autre page
+<<<<<<< HEAD
 	        response.sendRedirect("erreur");
+=======
+	        response.sendRedirect("chemin-vers-page-d-erreur.jsp");
+>>>>>>> 1578e47f46ce051df220be34d8829b81f641267b
 	    }
 	}
 }
