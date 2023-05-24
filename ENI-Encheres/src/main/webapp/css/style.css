@@ -1,5 +1,4 @@
 
-
 .container {
 	max-width: 1600px;
 	padding: 1rem;
@@ -11,12 +10,11 @@
 
 .filter-wrapper {
 	margin: 35px 0;
-	
 }
-
 .filter {
 	max-width: 550px;
 }
+
 
 .filter-categorie {
 	display: flex;
