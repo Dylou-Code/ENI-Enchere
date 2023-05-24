@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-<jsp:include page="../layout/layout.jsp" />
+    <jsp:include page="../layout/layout.jsp" />
 
   <!-- c:set permet d'ajouter la variable content du "layout.jsp" qui est le layout général du projet-->
   <c:set var="content">

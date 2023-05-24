@@ -46,21 +46,6 @@ public class ArticlesVendu {
 		this.image = image;
 		this.retrait = retrait;
 	}
-	
-	public ArticlesVendu(int no_article, String articleName, String description, LocalDate dateStartEnchere,
-			LocalDate dateEndEnchere, int prixInitial, int prixVente, 
-			  Retraits retrait) {
-		super();
-		this.no_article = no_article;
-		this.articleName = articleName;
-		this.description = description;
-		this.dateStartEnchere = dateStartEnchere;
-		this.dateEndEnchere = dateEndEnchere;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-
-		this.retrait = retrait;
-	}
 
 
 	public int getNo_article() {

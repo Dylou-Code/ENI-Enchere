@@ -18,13 +18,8 @@ public class ArticlesVenduManager {
 		return articlesVenduManager;
 	}
 	
-	//Fonction qui récupère la liste complete de tous les articles 
+	//Fonction qui récupère la liste complete de tout les articles confondu
 	public List<ArticlesVendu> SelectALL() throws DALException{
 		return articleVenduDAO.SelectAll();
-	}
-	//a faire Dylan
-	public void ajouterArticle(ArticlesVendu article) {
-		// TODO Auto-generated method stub
-		
 	}
 }

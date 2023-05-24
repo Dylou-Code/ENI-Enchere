@@ -51,18 +51,9 @@ public class ConnexionServlet extends HttpServlet {
 					if (utilisateur != null) {
 						HttpSession session = request.getSession(true);
 		                session.setAttribute("utilisateur", utilisateur);
-<<<<<<< HEAD
 		                request.setAttribute("valide", "Vous êtes connecté !");
 		                response.sendRedirect("http://localhost:8080/ENI-Encheres/");
 		                return;
-=======
-		                response.sendRedirect("http://localhost:8080/ENI-Encheres/");
-		                return;
-//						utilisateurManager.getInstance().login(identifiant, password);
-//						request.setAttribute("valide", "Vous êtes connecté !");
-//						response.sendRedirect("http://localhost:8080/ENI-Encheres/");
-//						return;
->>>>>>> 1578e47f46ce051df220be34d8829b81f641267b
 					} else {
 						erreurs.add("L'identifiant ou le mot de passe est incorrect !");
 					}
@@ -81,4 +72,3 @@ public class ConnexionServlet extends HttpServlet {
 		
 	}
 }
-
