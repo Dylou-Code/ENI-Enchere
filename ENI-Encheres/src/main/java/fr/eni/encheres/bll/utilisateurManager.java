@@ -131,5 +131,10 @@ public class utilisateurManager {
     		throw bllException ;
     	}
 	}	
+    
+    public String delete(String pseudo) throws DALException {
+    	utilisateurDAO.deleteUser(pseudo);
+    	return "Le compte a été supprimé avec succès";
+	}	
 	
 }

@@ -78,8 +78,8 @@
 		  	  
 	    	  <div style="text-align: center">
 		    	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			    	<button type="submit" class="btn btn-primary me-md-2" onclick="enregistrerModifications()">Enregistrer les modifications</button>
-			    	<button type="submit" class="btn btn-primary" onclick="supprimerCompte()">Supprimer mon compte</button>
+			    	<button type="submit" class="btn btn-primary me-md-2" onclick="enregistrerModifications()" name="Enregistrement">Enregistrer les modifications</button>
+			    	<button type="submit" class="btn btn-primary" onclick="supprimerCompte()" name="Suppression">Supprimer mon compte</button>
 		    	</div>
 			 </div>
 	    </form>
@@ -140,7 +140,7 @@
 	    street.required = false;
 	    zipCode.required = false;
 	    city.required = false;
-	    password.required = false;
+	    password.required = true;
 	    newPassword.required = false;
 	    confirmNewPassword.required = false;
 	  }

@@ -29,6 +29,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 	public final String SELECT_USER_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur=?";
 	public final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe) VALUES (?,?,?,?,?,?,?,?,?)";
 	public final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
+	public final String DELETE_USER = "DELETE FROM UTILISATEURS WHERE pseudo=?";
 	
 	//toujours faire des PreparedStatement pour éviter injectionSQL
 	public List<Utilisateurs> getAllUsers() throws DALException{
@@ -236,6 +237,19 @@ public class UtilisateurDAOJdbcImpl implements UtilisateursDAO{
 	        pStmt.executeUpdate();
 	    } catch (SQLException e) {
 	        throw new DALException("Impossible de mettre à jour l'utilisateur", e);
+	    }
+	}
+	
+	
+	public void deleteUser(String pseudo) throws DALException{	    
+		try (Connection con = ConnectionProvider.connection()) {
+	        PreparedStatement pStmt = con.prepareStatement(DELETE_USER);
+	        
+	        pStmt.setString(1,pseudo);
+	        
+	        pStmt.executeUpdate();
+	    } catch (SQLException e) {
+	        throw new DALException("Impossible de supprimer l'utilisateur", e);
 	    }
 	}
 }
