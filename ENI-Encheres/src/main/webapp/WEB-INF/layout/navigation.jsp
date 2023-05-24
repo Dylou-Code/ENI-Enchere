@@ -23,7 +23,7 @@
 		        <li><a href="<%= request.getContextPath() %>/Encheres">Enchères</a></li>
 		        <li><a href="<%= request.getContextPath() %>/AjouterArticle">Vendre un article</a></li>
 		        <li><a href="<%= request.getContextPath() %>/MonProfil">Mon profil</a></li>
-		        <li><a href="<%= request.getContextPath() %>/Connexion">Se déconnecter</a></li>
+		        <li><a href="<%= request.getContextPath() %>/Deconnexion">Se déconnecter</a></li>
 	      	</ul>
 	      </c:if>
 	      
