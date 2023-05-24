@@ -18,8 +18,11 @@
   <!-- c:set permet d'ajouter la variable content du "layout.jsp" qui est le layout général du projet-->
 
   <!-- Ajout du code de la page -->
-    
-    	<div class="Title">
+  
+  <main>
+  	<div class="container">
+  	
+  		<div class="Title">
     		 <h2>Nouvelle Vente</h2>
     	</div>
     	<form  method="POST" action="<%= request.getContextPath()%>/AjouterArticle">
@@ -46,9 +49,9 @@
 			    </option>
   			</c:forEach> --%>
   			
-  			<c:forEach var="category" items="${requestScope.categories}">
-                <option value="${category.no_categorie}">
-                    <c:out value="${category.libelle}" />
+  			<c:forEach var="category" items="${categories}">
+                <option value="${category.id}">
+                    <c:out value="${category.name}" />
                 </option>
             </c:forEach>
 		</select>
@@ -78,7 +81,7 @@
 	<fieldset>
 	    <legend>Retrait</legend>
 	<div class="mb-3">
-  			<label for="exampleFormControlInput1" class="form-label" value="${ categories.libelle}" >Rue</label>
+  			<label for="exampleFormControlInput1" class="form-label"  >Rue</label>
  			 <input type="text" class="form-control" id="street" name="street" >
 		</div>
 	
@@ -95,9 +98,15 @@
 	
 	<div class="d-grid gap-5 d-md-block">
 	  <button class="btn btn-primary" type="submit">Enregistrer</button>
-	  <button class="btn btn-primary" type="annuler">Annuler</button>
+	  <button class="btn btn-danger" type="submit">Annuler</button>
 	</div>	
     	</form>
+  	
+  	</div>
+  	
+  </main>
+    
+    	
     	
 </body>
 </html>

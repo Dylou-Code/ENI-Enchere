@@ -29,7 +29,7 @@
   
   <%-- A gérer--%>
   
-   <%-- <c:if test="${empty User }">
+   <%-- <c:if test="${empty utilisateur }">
 		    	<div class="d-flex mx-3">
 		    	<div class="mx-3 ">
 		    		<a type="button" href="connexion" class="btn btn-outline-primary">Se connecter</a>

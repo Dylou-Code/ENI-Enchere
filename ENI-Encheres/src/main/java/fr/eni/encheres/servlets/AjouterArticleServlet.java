@@ -43,9 +43,9 @@ public class AjouterArticleServlet extends HttpServlet {
 		// session user à rajouter dans la condition 
 		
 		
-		ArrayList<Categories> listCategories = new ArrayList<>();
+		//ArrayList<Categories> listCategories = new ArrayList<>();
 		//Récuperation catégorie
-		try {
+		/*try {
 			listCategories.addAll(CategoriesManager.getInstance().SelectALL());
 		} catch(Exception e){
 			request.setAttribute("message", "Echec de l'ajout");
@@ -54,9 +54,9 @@ public class AjouterArticleServlet extends HttpServlet {
 	
 		
 		request.setAttribute("pageTitle", "AjouterArticle");
-        request.getRequestDispatcher("/WEB-INF/jsp/ajoutArticle.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/ajoutArticle.jsp").forward(request, response);*/
 		
-		/* try {
+		try {
 			 ArrayList<Categories> listCategories = new ArrayList<>();
 			 listCategories.addAll(CategoriesManager.getInstance().SelectALL());
 		        request.setAttribute("categories", listCategories);
@@ -65,7 +65,7 @@ public class AjouterArticleServlet extends HttpServlet {
 		        e.printStackTrace();
 		    }
 		    
-		    request.getRequestDispatcher("/WEB-INF/jsp/ajoutArticle.jsp").forward(request, response);*/
+		    request.getRequestDispatcher("/WEB-INF/jsp/ajoutArticle.jsp").forward(request, response);
 	}
 
 	/**
