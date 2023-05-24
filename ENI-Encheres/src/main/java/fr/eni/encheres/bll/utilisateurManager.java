@@ -1,4 +1,4 @@
- package fr.eni.encheres.bll;
+  package fr.eni.encheres.bll;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -97,27 +97,28 @@ public class utilisateurManager {
     	List<String> emails = utilisateurDAO.getEmails();
     	List<String> pseudos = utilisateurDAO.getPseudos();
     	List<Utilisateurs> users = utilisateurDAO.getAllUsers();
-        Utilisateurs result = null;
-        
+        Utilisateurs result;
         if (emails.contains(identifiant)) {
         	for (String e : emails) {
         		for (Utilisateurs user : users) {
-        			if (e.equals(user.getEmail()) && password.equals(user.getPassword())) {
+        			if (e.equals(user.getEmail()) && e.equals(identifiant) && password.equals(user.getPassword())) {
         				result = user;
+        				return result;
         			}
         		}
         	}
         }
         if (pseudos.contains(identifiant)) {
-        	for (String s : pseudos) {
+        	for (String p : pseudos) {
         		for (Utilisateurs user : users) {
-        			if (s.equals(user.getPseudo()) && password.equals(user.getPassword())) {
+        			if (p.equals(user.getPseudo()) && p.equals(identifiant) && password.equals(user.getPassword())) {
         				result = user;
+        				return result;
         			}
         		}
         	}
         }
-        return result;
+        return null;
     }
 	
     public String update(int id, String pseudo, String firstName, String lastName, String email, String phoneNumber, String street, String zipCode, String city, String password) throws DALException, BllException {
@@ -130,6 +131,11 @@ public class utilisateurManager {
     		bllException.addErreur("Le mot de passe ne correspond pas aux critères de stratégie de mot de passe. (Au minimum : une majucule, une minuscule, un chiffre, un caractère spécial)");
     		throw bllException ;
     	}
+	}	
+    
+    public String delete(String pseudo) throws DALException {
+    	utilisateurDAO.deleteUser(pseudo);
+    	return "Le compte a été supprimé avec succès";
 	}	
 	
 }

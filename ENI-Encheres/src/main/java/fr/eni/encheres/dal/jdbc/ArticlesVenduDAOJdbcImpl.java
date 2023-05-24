@@ -12,6 +12,8 @@ import fr.eni.encheres.dal.connection.ConnectionProvider;
 import fr.eni.encheres.dal.interfaces.ArticlesVenduDAO;
 import fr.eni.encheres.exceptions.DALException;
 import fr.eni.encheres.bo.Categories;
+import fr.eni.encheres.bo.Utilisateurs;
+import fr.eni.encheres.bo.Retraits;
 
 
 /*
@@ -33,17 +35,24 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 	
 	
 	//avec l'utilisateurs
-	/*private static final String SELECT_ALL ="select av.no_article, nom_article, av.[description], date_debut_encheres, date_fin_encheres,\n"
+	private static final String SELECT_ALL ="select av.no_article, nom_article, av.[description], date_debut_encheres, date_fin_encheres,\n"
 			+ "prix_initial, prix_vente, u.*, c.*\n"
 			+ "from ARTICLES_VENDUS av \n"
 			+ "inner join UTILISATEURS u on u.no_utilisateur = av.no_utilisateur\n"
-			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie";*/ 
+			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie";
 	
 	//sans l'utiliosateurs
-	private static final String SELECT_ALL ="select av.no_article, nom_article, av.[description], date_debut_encheres, date_fin_encheres,\n"
+	/*private static final String SELECT_ALL ="select av.no_article, nom_article, av.[description], date_debut_encheres, date_fin_encheres,\n"
 			+ "prix_initial, prix_vente, c.*\n"
 			+ "from ARTICLES_VENDUS av \n"
-			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie"; 
+			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie"; */
+	
+	private static final String SELECT_BY_ID ="select av.no_article, nom_article, av.[description], date_debut_enchere, date_fin_enchere,\n"
+			+ "prix_initial, prix_vente, u.*, c.*, etat_vente \n"
+			+ "from ARTICLES_VENDUS av \n"
+			+ "inner join UTILISATEURS u on u.no_utilisateur = av.no_utilisateur\n"
+			+ "inner join RETRAITS r on r .no_article = av.no_article\n"
+			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie where av.no_article= ?"; 
 	
 	
 	
@@ -115,19 +124,19 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 						
 						//pour retourner le Utilisateur correspondants
 						
-						/*Utilisateurs u = new Utilisateurs();
-						u.setNo_utilisateur(rs.getInt("no_utilisateur"));
-						u.setNom(rs.getString("nom"));
-						u.setPrenom(rs.getString("prenom"));
+						Utilisateurs u = new Utilisateurs();
+						u.setId(rs.getInt("no_utilisateur"));
+						u.setFirstName(rs.getString("nom"));
+						u.setLastName(rs.getString("prenom"));
 						u.setPseudo(rs.getString("pseudo"));
 						u.setEmail(rs.getString("email"));
-						u.setTelephone(rs.getString("telephone"));
-						u.setRue(rs.getString("rue"));
-						u.setCode_postale(rs.getString("code_postal"));
-						u.setVille(rs.getString("ville"));
-						u.setMot_de_passe(rs.getString("mot_de_passe"));
+						u.setPhoneNumber(rs.getString("telephone"));
+						u.setStreet(rs.getString("rue"));
+						u.setZipCode(rs.getString("code_postal"));
+						u.setCity(rs.getString("ville"));
+						u.setPassword(rs.getString("mot_de_passe"));
 						u.setCredit(rs.getInt("credit"));
-						u.setAministrateur(rs.getBoolean("administrateur"));*/
+						u.setAdmin(rs.getBoolean("administrateur"));
 						
 						/*vArticleVendu.setUtilisateur(u);*/
 						Categories c = new Categories();
@@ -151,11 +160,161 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 		/*return ListArticlesVendu ;*/
 		
 	}
+	
+	@Override
+	public ArticlesVendu SelectById(int no_article) throws DALException {
+		//initilisation d'une liste d'article
+		ArticlesVendu ArticleVendu = new ArticlesVendu();
+		
+		// ouvre une connexion à la base de donnée
+		try (Connection con = ConnectionProvider.connection()){
+			//On charge  et prépare la requête pour exécution
+			PreparedStatement pst = con.prepareStatement(SELECT_BY_ID);
+			
+			pst.setInt(1, no_article);
+			//on execute la requete et récupère les élement qu'lle nou retourne 
+			ResultSet rs = pst.executeQuery();	
+			
+			/*
+			 * Pour chaque ligne de la liste retouné 
+			 * on crée un objet de type utilisateur qu'on va associé à chaque colonne de notre ligne 
+			 * puis on va ajouter l'ojet region à notre liste d'utilisateurs
+			 */
+			while (rs.next()) {
+				//initialisation d'un objet Article_Vendus
+				ArticleVendu.setNo_article(rs.getInt("no_article"));
+				ArticleVendu.setArticleName(rs.getString("nom_article"));
+				ArticleVendu.setDescription(rs.getString("description"));
+				ArticleVendu.setDateStartEnchere(rs.getDate("date_debut_encheres").toLocalDate());
+				ArticleVendu.setDateEndEnchere(rs.getDate("date_fin_encheres").toLocalDate());
+				ArticleVendu.setPrixInitial(rs.getInt("prix_initial"));
+				ArticleVendu.setPrixVente(rs.getInt("prix_vente"));
+				
+				Utilisateurs u = new Utilisateurs();
+				u.setId(rs.getInt("no_utilisateur"));
+				u.setFirstName(rs.getString("nom"));
+				u.setLastName(rs.getString("prenom"));
+				u.setPseudo(rs.getString("pseudo"));
+				u.setEmail(rs.getString("email"));
+				u.setPhoneNumber(rs.getString("telephone"));
+				u.setStreet(rs.getString("rue"));
+				u.setZipCode(rs.getString("code_postal"));
+				u.setCity(rs.getString("ville"));
+				u.setPassword(rs.getString("mot_de_passe"));
+				u.setCredit(rs.getInt("credit"));
+				u.setAdmin(rs.getBoolean("administrateur"));
+				
+				ArticleVendu.setUtilisateur(u);
+				Categories c = new Categories();
+				c.setId(rs.getInt("no_categorie"));
+				c.setName(rs.getString("libelle"));
+				
+				Retraits retrait = new Retraits();
+				retrait.setStreet(rs.getString("rue"));
+				retrait.setZipCode(rs.getString("code_postal"));
+				retrait.setCity(rs.getString("ville"));
+				ArticleVendu.setRetrait(retrait);
+				
+				ArticleVendu.setCategorie(c);
+				//ArticleVendu.setEtat_vente(rs.getString("etat_vente"));
+			}
+			
+			//on retourne la liste d'utilisateur
+			return ArticleVendu ;
+		} 
+		catch (SQLException e) {
+			
+			// en cas d'erreur on ajoute un message d'erreur à la liste des erreurs de l'objet SQLException créé. 
+			throw new DALException("Fonction SelectByID ArticlVendusJDBCImpl " + e.getMessage());
+		}
+	}
 
 
 	@Override
 	public void Delete(int no_article) throws DALException {
 		// TODO Auto-generated method stub
-		
+try(Connection con = ConnectionProvider.connection()){
+			
+			PreparedStatement pst = con.prepareStatement(DELETE);
+			
+			pst.setInt(1, no_article);
+			pst.executeUpdate();
+
+		} catch (SQLException e) {
+			// en cas d'erreur on ajoute un message d'erreur à la liste des erreurs de l'objet SQLException créé. 
+			throw new DALException("Erreur, une erreur s'est produite dans la suppression de la vente " );
+		}
 	}
+
+
+	@Override
+	public List<ArticlesVendu> SelectArticleUtilisateur() throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	/*public List<ArticleVendu> SelectArticleutilisateur() throws DALException {
+		//initilisation d'une liste d'article
+		List<Article_vendus> vListArticleVendu = new ArrayList<Article_vendus>();
+		
+		String requete = "select a.*, u.*, c.* from ARTICLES_VENDUS a \n"
+				+ "inner join UTILISATEURS u on u.no_utilisateur = a.no_utilisateur\n"
+				+ "inner join CATEGORIES c on c.no_categorie = a.no_categorie\n"
+	
+			
+
+			//on execute la requete et récupère les élement qu'lle nou retourne 
+			ResultSet rs = ps.executeQuery();	*/
+			
+			/*
+			 * Pour chaque ligne de la liste retouné 
+			 * on crée un objet de type utilisateur qu'on va associé à chaque colonne de notre ligne 
+			 * puis on va ajouter l'ojet region à notre liste d'utilisateurs
+			 */
+		/*	while (rs.next()) {
+				//initialisation d'un objet Article_Vendus
+				Article_vendus vArticleVendu = new Article_vendus();
+				vArticleVendu.setNo_article(rs.getInt("no_article"));
+				vArticleVendu.setNom_article(rs.getString("nom_article"));
+				vArticleVendu.setDescription(rs.getString("description"));
+				vArticleVendu.setDate_debut_enchere(rs.getDate("date_debut_enchere").toLocalDate());
+				vArticleVendu.setDate_fin_enchere(rs.getDate("date_fin_enchere").toLocalDate());
+				vArticleVendu.setPrix_initial(rs.getInt("prix_initial"));
+				vArticleVendu.setPrix_vente(rs.getInt("prix_vente"));
+				
+				Utilisateurs u = new Utilisateurs();
+				u.setNo_utilisateur(rs.getInt("no_utilisateur"));
+				u.setNom(rs.getString("nom"));
+				u.setPrenom(rs.getString("prenom"));
+				u.setPseudo(rs.getString("pseudo"));
+				u.setEmail(rs.getString("email"));
+				u.setTelephone(rs.getString("telephone"));
+				u.setRue(rs.getString("rue"));
+				u.setCode_postale(rs.getString("code_postal"));
+				u.setVille(rs.getString("ville"));
+				u.setMot_de_passe(rs.getString("mot_de_passe"));
+				u.setCredit(rs.getInt("credit"));
+				u.setAministrateur(rs.getBoolean("administrateur"));
+				
+				vArticleVendu.setUtilisateur(u);
+				Categories c = new Categories();
+				c.setNo_categorie(rs.getInt("no_categorie"));
+				c.setLibelle(rs.getString("libelle"));
+				
+				vArticleVendu.setCategorie(c);
+				vArticleVendu.setEtat_vente(rs.getString("etat_vente"));
+				vListArticleVendu.add(vArticleVendu);
+			}
+			
+			//on retourne la liste d'utilisateur
+			return vListArticleVendu ;
+		} 
+		catch (SQLException e) {
+			
+			// en cas d'erreur on ajoute un message d'erreur à la liste des erreurs de l'objet SQLException créé. 
+			throw new DALException("Fonction SelectArticleutilisateur ArticlVendusJDBCImpl " + e.getMessage());
+		}
+	}*/
+	
 }
