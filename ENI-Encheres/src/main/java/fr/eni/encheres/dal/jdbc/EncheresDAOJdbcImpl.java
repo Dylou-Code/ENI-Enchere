@@ -44,7 +44,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 		return resultat;
 	}
 
-	public Encheres getAllAuctionsByIdUser(int idUser) throws DALException {
+	public List<Encheres> getAllAuctionsByIdUser(int idUser) throws DALException {
 		//Connection con=null;
 		//PreparedStatement pStmt= null;
 		List<Encheres> resultat = new ArrayList<>();
@@ -71,7 +71,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 			throw new DALException("Aucune enchère n'est associé à l'utilisateur ayant pour id : " + idUser, e);
 		}
 		
-		return (Encheres) resultat;
+		return resultat;
 	}
 
 	

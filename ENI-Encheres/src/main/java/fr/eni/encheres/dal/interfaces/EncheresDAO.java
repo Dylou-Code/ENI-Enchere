@@ -9,6 +9,6 @@ public abstract interface EncheresDAO {
 	
 
 	public List<Encheres> getAllAuctions() throws DALException;
-	public Encheres getAllAuctionsByIdUser(int idUser) throws DALException;
+	public List<Encheres> getAllAuctionsByIdUser(int idUser) throws DALException;
 	public void insertAuction(Encheres enchere) throws DALException;
 }
