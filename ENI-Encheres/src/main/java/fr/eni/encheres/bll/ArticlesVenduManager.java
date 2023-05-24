@@ -18,10 +18,6 @@ public class ArticlesVenduManager {
 		return articlesVenduManager;
 	}
 	
-	public static ArticlesVenduManager getInstance() throws InstantiationException, IllegalAccessException, ClassNotFo	//Fonction qui récupère la liste complete de tout les articles confondu
-	articlesVenduManager rticles 
-	public List<ArticlesVendu> SelectAll() throws DALException{
-=======
 	//Fonction qui récupère la liste complete de tout les articles confondu
 	public List<ArticlesVendu> SelectALL() throws DALException{
 		return articleVenduDAO.SelectAll();
