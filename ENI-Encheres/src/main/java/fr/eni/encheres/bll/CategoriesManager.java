@@ -11,9 +11,9 @@ public class CategoriesManager {
 	public static CategoriesManager categoriesManager;
 	private CategoriesDAO categoriesDAO;
 	
-	public CategoriesManager() {
-		categoriesDAO = new DAOFactory().getCategoriesDAO();
-	}
+//	public CategoriesManager() {
+//		CategoriesDAO = new DAOFactory().getCategoriesDAO();
+//	}
 	
 	public static CategoriesManager getInstance() throws InstantiationException, IllegalAccessException, ClassNotFoundException, Exception{
 		if(categoriesManager == null) {

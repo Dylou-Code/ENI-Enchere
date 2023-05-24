@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.interfaces.UtilisateursDAO;
+import fr.eni.encheres.exceptions.DALException;
 
 @WebServlet("/Profil")
 public class ProfilServlet extends HttpServlet {
@@ -26,27 +27,42 @@ public class ProfilServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
-	    // Récupérer le pseudo de recherche depuis le formulaire
+		// Récupérer le pseudo de recherche depuis le formulaire
 	    String pseudoRecherche = request.getParameter("pseudoRecherche");
 
-	    
+	    // Créer une instance de DAOFactory
 	    DAOFactory daoFactory = new DAOFactory();
-	    UtilisateursDAO userDAO = new DAOFactory().getUtilisateurDAO();
-	    Utilisateurs user = userDAO.getUserByPseudo(pseudoRecherche);
-	
+
+	    // Récupérer l'instance de UtilisateursDAO depuis DAOFactory
+	    UtilisateursDAO userDAO = daoFactory.getUtilisateurDAO();
+
+	    // Récupérer l'utilisateur en fonction du pseudo de recherche
+	    Utilisateurs user = null;
+		try {
+			user = userDAO.getUserByPseudo(pseudoRecherche);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	    // Vérifier si le pseudo existe dans la base de données
 	    if (user != null) {
-	    	request.setAttribute(request.getParameter("pseudo"), user.getPseudo());
-	    	request.setAttribute(request.getParameter("lastName"), user.getLastName());
-	    	request.setAttribute(request.getParameter("firstName"), user.getFirstName());
-	    	request.setAttribute(request.getParameter("email"), user.getEmail());
-	    	request.setAttribute(request.getParameter("phoneNumber"), user.getPhoneNumber());
-	    	request.setAttribute(request.getParameter("street"), user.getStreet());
-	    	request.setAttribute(request.getParameter("zipCode"), user.getZipCode());
-	    	request.setAttribute(request.getParameter("city"), user.getCity());  
-		}	
+	        // Définir les attributs pour les données à transmettre à la JSP
+	        request.setAttribute("pseudo", user.getPseudo());
+	        request.setAttribute("lastName", user.getLastName());
+	        request.setAttribute("firstName", user.getFirstName());
+	        request.setAttribute("email", user.getEmail());
+	        request.setAttribute("phoneNumber", user.getPhoneNumber());
+	        request.setAttribute("street", user.getStreet());
+	        request.setAttribute("zipCode", user.getZipCode());
+	        request.setAttribute("city", user.getCity());  
+
+	        // Transmettre la requête à la JSP
+	        request.getRequestDispatcher("/WEB-INF/jsp/profil.jsp").forward(request, response);
+	    } else {
+	        // Gérer le cas où le pseudo n'existe pas dans la base de données
+	        // Par exemple, afficher un message d'erreur ou rediriger vers une autre page
+	        response.sendRedirect("erreur");
+	    }
 	}
 }

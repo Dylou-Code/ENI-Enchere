@@ -10,7 +10,7 @@ public class Categories {
 		super();
 	} 
 	
-	public Categories(int no_categorie, String libelle) {
+	public Categories(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;

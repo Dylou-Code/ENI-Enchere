@@ -45,21 +45,11 @@ public class InscriptionServlet extends HttpServlet {
 		        
 		List<String> erreurs = new ArrayList<>();
         
-        if(!request.getParameter("pseudo").isEmpty()
-    			&& !request.getParameter("firstName").isEmpty() 
-    			&& !request.getParameter("lastName").isEmpty() 
-    			&& !request.getParameter("email").isEmpty() 
-    			&& !request.getParameter("phoneNumber").isEmpty()
-    			&& !request.getParameter("zipCode").isEmpty()
-    			&& !request.getParameter("street").isEmpty()
-    			&& !request.getParameter("city").isEmpty()
-    			&& !request.getParameter("password").isEmpty()
-    			&& !request.getParameter("confirmPassword").isEmpty()) {
     			if(request.getParameter("password").equals(request.getParameter("confirmPassword"))) {
     				
     				Utilisateurs user = new Utilisateurs(0, request.getParameter("pseudo"), 
     						request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("email"), 
-    						request.getParameter("phoneNumber"), request.getParameter("zipCode"), request.getParameter("street"), 
+    						request.getParameter("phoneNumber"), request.getParameter("street"), request.getParameter("zipCode"),
     						request.getParameter("city"), request.getParameter("confirmPassword"), 100, false);
     				
     				try {
@@ -87,9 +77,6 @@ public class InscriptionServlet extends HttpServlet {
     		    } else {
     		        erreurs.add("Le mot de passe doit être le même que la confirmation");
     		    }
-    		} else {
-    		    erreurs.add("Tous les champs doivent être remplis");
-    		}
 
     		if (!erreurs.isEmpty()) {
     		    request.setAttribute("erreurs", erreurs);

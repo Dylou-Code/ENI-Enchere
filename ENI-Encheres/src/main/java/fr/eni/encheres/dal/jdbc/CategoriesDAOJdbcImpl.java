@@ -34,8 +34,8 @@ public class CategoriesDAOJdbcImpl implements CategoriesDAO {
 			 */
 			while (rs.next()) {
 				Categories Categorie = new Categories(); 
-				Categorie.setId(rs.getInt("no_categorie"));
-				Categorie.setName(rs.getString("libelle"));
+				Categorie.setId(rs.getInt("id"));
+				Categorie.setName(rs.getString("name"));
 				ListCategorie.add(Categorie);
 			}
 			

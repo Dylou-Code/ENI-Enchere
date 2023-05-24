@@ -19,7 +19,7 @@
       <form class="row g-3" action="<%= request.getContextPath()%>/Inscription" method="POST">
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Pseudo</label>
-    <input type="text" class="form-control" id="inputEmail4" name="pseudo" value="" required>
+    <input type="text" class="form-control" id="inputEmail4" name="pseudo" required>
   </div>
   
   <div class="col-md-6">
@@ -76,11 +76,16 @@
   </div>
   
    <div class="col-2">
-    <button type="submit" class="btn btn-primary">Annuler</button>
+    <button type="button" class="btn btn-primary" onclick="cancel(event)">Annuler</button>
   </div>
 </form>
 
     </div>
 </c:set>
 
-	
+<script>
+  function cancel(event) {
+	  event.preventDefault();
+	  window.location.href = "http://localhost:8080/ENI-Encheres/";
+  }
+</script>
