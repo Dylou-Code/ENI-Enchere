@@ -65,35 +65,23 @@
 						    </div>
 						    
 						     <a href="<%= request.getContextPath() %>/detailArticle" class="btn btn-primary">Encherir</a>
-						     
+						    <%--  <a href="${request.contextPath}/detailArticle?articleId=${article.articleId}" class="btn btn-primary">Détails</a>  --%>
 						    
 				    	</div>
 				  	</div>
 				  </div>
 				</c:forEach>
-		
-		    
+				
+				
 		  </div>
   
 		</div>
-		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-			
-
 		
 	</main>
   <!-- Ajout du code de la page -->
    
 
-	
+	<!-- ajout de la condition -->
 	    	
 </body>
 </html>

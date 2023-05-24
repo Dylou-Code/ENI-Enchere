@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.ArticlesVenduManager;
 import fr.eni.encheres.bll.CategoriesManager;
@@ -41,32 +42,63 @@ public class HomeServlet extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
-    	
-    	
-        // Récupérer la liste des articles dont la vente est en cours 
-      
-        List<ArticlesVendu> listesArticles = new ArrayList<ArticlesVendu>();;
-		try {
-			listesArticles = ArticlesVenduManager.getInstance().SelectAll();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        request.setAttribute("listesArticles", listesArticles);
-       
-        List<Categories> listCategorie = new ArrayList<Categories>();
-        listCategorie.add(new Categories(0, "Toutes"));
-        
-        try {
-        	
-            listCategorie.addAll(categorieManager.SelectALL());
-        } catch (Exception e) {
-            e.printStackTrace();
+    	HttpSession session = request.getSession(false);
+    	/*if (session != null && session.getAttribute("utilisateur") != null) {
+
+    		request.getRequestDispatcher("/WEB-INF/jsp/modifierMonProfil.jsp").forward(request, response);
+
+    	} else {
+
+    	 response.sendRedirect("Connexion");
+
+     }*/
+    	/*if (utilisateurConnecte != null) {
+            // L'utilisateur est connecté, afficher les articles de l'utilisateur
+            List<Article> articlesUtilisateur = getArticlesUtilisateur(utilisateurConnecte.getId());
+            request.setAttribute("listesArticles", articlesUtilisateur);
+        } else {
+            // L'utilisateur n'est pas connecté, afficher tous les articles
+            List<Article> tousLesArticles = getAllArticles();
+            request.setAttribute("listesArticles", tousLesArticles);
         }
         
-        request.setAttribute("listCategorie", listCategorie);
-        request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+        // Autres traitements ou redirection vers la JSP appropriée
+        request.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(request, response);
+    }
+    	if(request.getSession().getAttribute("User") == null) {}*/
+    	
+    		if (session != null && session.getAttribute("utilisateur") != null)  {
+    		// Récupérer la liste des articles dont la vente est en cours 
+            List<ArticlesVendu> listesArticles = new ArrayList<ArticlesVendu>();;
+    		try {
+    			listesArticles = ArticlesVenduManager.getInstance().SelectAll();
+    		} catch (Exception e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+            request.setAttribute("listesArticles", listesArticles);
+           
+            List<Categories> listCategorie = new ArrayList<Categories>();
+            listCategorie.add(new Categories(0, "Toutes"));
+            
+            try {
+            	
+                listCategorie.addAll(categorieManager.SelectALL());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+            request.setAttribute("listCategorie", listCategorie);
+            request.getRequestDispatcher("/WEB-INF/jsp/Home.jsp").forward(request, response);
+            
+    	} else {
+    		 response.sendRedirect("Connexion");
+             
+    	}
+        
+    	
+    
+       
     
     }
 

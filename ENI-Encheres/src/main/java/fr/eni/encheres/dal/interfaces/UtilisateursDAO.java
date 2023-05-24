@@ -16,4 +16,5 @@ public abstract interface UtilisateursDAO {
 	public abstract void insertUser(Utilisateurs user) throws DALException;
 	public abstract void updateUser(int id, String pseudo, String firstName, String lastName, String email, String phoneNumber, String street, String zipCode, String city, String password) throws DALException;
 	public abstract void deleteUser(String pseudo) throws DALException;
+
 }
