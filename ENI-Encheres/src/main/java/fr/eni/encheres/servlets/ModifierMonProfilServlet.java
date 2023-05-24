@@ -45,7 +45,10 @@ public class ModifierMonProfilServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("utilisateur") != null) {
-			if(request.getParameter("Enregistrement") != null) {
+			if(request.getParameter("Enregistrement") == null && request.getParameter("Suppression") == null) {
+				request.getRequestDispatcher("/WEB-INF/jsp/modifierMonProfil.jsp").forward(request, response);
+			}
+			else if(request.getParameter("Enregistrement") != null) {
 				Utilisateurs util = (Utilisateurs) session.getAttribute("utilisateur");
 				int id = util.getId();
 			
@@ -93,7 +96,8 @@ public class ModifierMonProfilServlet extends HttpServlet {
 				    request.setAttribute("erreurs", erreurs);
 				    request.getRequestDispatcher("/WEB-INF/jsp/modifierMonProfil.jsp").forward(request, response);
 				}
-			}else if (request.getParameter("Suppression") != null) {
+			}
+		else if (request.getParameter("Suppression") != null) {
 				
 				Utilisateurs util = (Utilisateurs) session.getAttribute("utilisateur");
 				String pseudo = util.getPseudo();

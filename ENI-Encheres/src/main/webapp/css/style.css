@@ -1,18 +1,32 @@
-body {
-
-	width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .container {
-	max-width: 1400px;
-	 display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	max-width: 1600px;
+	padding: 1rem;
 }
 
+.title {
+	text-align: center;
+}
+
+
+.filter-wrapper {
+	margin: 35px 0;
+}
+
+.filter {
+	max-width: 550px;
+}
+
+
+.filter-categorie {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.filter-label {
+	padding-right: 15px;
+}
+
+.filter-search {
+	padding: 15px 0;
+}
