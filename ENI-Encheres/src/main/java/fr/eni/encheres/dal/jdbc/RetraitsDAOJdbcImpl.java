@@ -1,5 +1,7 @@
 package fr.eni.encheres.dal.jdbc;
 
-public class RetraitsDAOJdbcImpl {
+import fr.eni.encheres.dal.interfaces.RetraitsDAO;
+
+public class RetraitsDAOJdbcImpl implements RetraitsDAO {
 
 }

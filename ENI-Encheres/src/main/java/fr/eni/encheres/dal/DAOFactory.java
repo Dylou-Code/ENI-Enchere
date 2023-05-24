@@ -9,6 +9,7 @@ import fr.eni.encheres.dal.interfaces.UtilisateursDAO;
 import fr.eni.encheres.dal.jdbc.ArticlesVenduDAOJdbcImpl;
 import fr.eni.encheres.dal.jdbc.CategoriesDAOJdbcImpl;
 import fr.eni.encheres.dal.jdbc.EncheresDAOJdbcImpl;
+import fr.eni.encheres.dal.jdbc.RetraitsDAOJdbcImpl;
 import fr.eni.encheres.dal.jdbc.UtilisateurDAOJdbcImpl;
 
 //
@@ -49,6 +50,13 @@ public class DAOFactory {
 			encheresDAO = new EncheresDAOJdbcImpl();
 		}
 		return encheresDAO;
+	}
+	
+	public static RetraitsDAO getRetraitsDAO() {
+		if (retraitDAO == null) {
+			retraitDAO = new RetraitsDAOJdbcImpl();
+		}
+		return retraitDAO;
 	}
 	
 }
