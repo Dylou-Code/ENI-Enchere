@@ -2,6 +2,7 @@ package fr.eni.encheres.dal.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
@@ -47,12 +48,20 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 			+ "from ARTICLES_VENDUS av \n"
 			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie"; */
 	
-	private static final String SELECT_BY_ID ="select av.no_article, nom_article, av.[description], date_debut_enchere, date_fin_enchere,\n"
+	private static final String SELECT_BY_ID ="select av.no_article, nom_article, av.[description], date_debut_encheres, date_fin_encheres,\n"
 			+ "prix_initial, prix_vente, u.*, c.*, etat_vente \n"
 			+ "from ARTICLES_VENDUS av \n"
 			+ "inner join UTILISATEURS u on u.no_utilisateur = av.no_utilisateur\n"
 			+ "inner join RETRAITS r on r .no_article = av.no_article\n"
 			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie where av.no_article= ?"; 
+	
+	private static final String SELECT_BY_ID_USER ="SELECT av.no_article, nom_article, av.[description], date_debut_encheres, date_fin_encheres,\n"
+			+ "prix_initial, prix_vente, u.*, c.* \n"
+			+ "FROM ARTICLES_VENDUS av \n"
+			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur\n"
+			+ "INNER JOIN RETRAITS r ON r .no_article = av.no_article\n"
+			+ "INNER JOIN CATEGORIES c ON c.no_categorie = av.no_categorie "
+			+ "WHERE u.no_utilisateur= ?"; 
 	
 	
 	
@@ -229,6 +238,66 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 		}
 	}
 
+	
+	public List<ArticlesVendu> SelectByIdUser(int idUser) throws DALException {
+		//initilisation d'une liste d'article
+		List<ArticlesVendu> listeArticlesByUser = new ArrayList<>();
+		
+		// ouvre une connexion à la base de donnée
+		try (Connection con = ConnectionProvider.connection()){
+			//On charge  et prépare la requête pour exécution
+			PreparedStatement pst = con.prepareStatement(SELECT_BY_ID_USER);
+			pst.setInt(1, idUser);
+			//on execute la requete et récupère les élement qu'lle nou retourne 
+			
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {	
+				
+				int idU = rs.getInt("no_utilisateur");
+				String lastName = rs.getString("nom");
+				String firtName = rs.getString("prenom");
+				String pseudo = rs.getString("pseudo");
+				String email = rs.getString("email");
+				String phone = rs.getString("telephone");
+				String street = rs.getString("rue");
+				String zipCode = rs.getString("code_postal");
+				String city = rs.getString("ville");
+				String password = rs.getString("mot_de_passe");
+				int credit = rs.getInt("credit");
+				Boolean admin = rs.getBoolean("administrateur");
+				Utilisateurs user = new Utilisateurs(idU, pseudo, lastName, lastName, email, phone, street, zipCode, city, password, credit, admin);
+				
+				int idC = rs.getInt("no_categorie");
+				String libelleC = rs.getString("libelle");
+				Categories categorie = new Categories(idC, libelleC);
+				
+				Retraits retrait = new Retraits();
+				retrait.setStreet(rs.getString("rue"));
+				retrait.setZipCode(rs.getString("code_postal"));
+				retrait.setCity(rs.getString("ville"));
+				
+				int idA = rs.getInt("no_article");
+				String nameA = rs.getString("nom_article");
+				String description = rs.getString("description");
+				LocalDate dateDebut = rs.getDate("date_debut_encheres").toLocalDate();
+				LocalDate dateFin = rs.getDate("date_fin_encheres").toLocalDate();
+				int prixDebut = rs.getInt("prix_initial");
+				int prixVente = rs.getInt("prix_vente");
+				ArticlesVendu article = new ArticlesVendu(idA, nameA, description, dateDebut, dateFin, prixDebut, prixVente, user, categorie, nameA, description, retrait);
+				
+				listeArticlesByUser.add(article);
+			}
+			//on retourne la liste d'utilisateur
+			return listeArticlesByUser ;
+		} 
+		catch (SQLException e) {
+			
+			// en cas d'erreur on ajoute un message d'erreur à la liste des erreurs de l'objet SQLException créé. 
+			throw new DALException("Fonction SelectByID ArticlVendusJDBCImpl " + e.getMessage());
+		}
+	}
+	
 
 	@Override
 	public void Delete(int no_article) throws DALException {

@@ -16,6 +16,7 @@ public abstract interface ArticlesVenduDAO {
 	public abstract void Update(ArticlesVendu articleVendu) throws DALException;
 	public abstract List<ArticlesVendu> SelectAll()throws DALException;
 	public abstract ArticlesVendu SelectById(int no_article) throws DALException;
+	public abstract List<ArticlesVendu> SelectByIdUser(int no_article) throws DALException;
 	public abstract void Delete(int no_article) throws DALException;
 	public abstract List<ArticlesVendu> SelectArticleUtilisateur ()throws DALException;
 	//filtre à ajouter

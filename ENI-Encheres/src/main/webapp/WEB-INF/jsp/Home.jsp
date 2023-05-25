@@ -141,7 +141,34 @@
 				
 		  </div>
 		  
+<<<<<<< HEAD
 		  
+=======
+		  <div class="row row-cols-1 row-cols-md-4 g-4">
+			<c:forEach var="enchere" items="${listeEncheres }">
+		  		<div class="col">
+		    
+		    
+				
+					<div class="card">
+					    <div class="card-body">
+					      <h5 class="card-title" > ${enchere.id }</h5>
+					      <p class="card-text"> Prix : ${enchere.price }</p>
+						    <div class="card-text">
+						      <p class="text"> <span class="fw-bold">Fin de l'enchere : </span>${enchere.date }</p>
+						    </div>
+						    
+						     <a href="<%= request.getContextPath() %>/detailArticle" class="btn btn-primary">Encherir</a>
+						    <%--  <a href="${request.contextPath}/detailArticle?articleId=${article.articleId}" class="btn btn-primary">Détails</a>  --%>
+						    
+				    	</div>
+				  	</div>
+				  </div>
+				</c:forEach>
+				
+				
+		  </div>
+>>>>>>> 19b43a40e2e9da182fc39300ac62aad8d6d279c4
   
 		</div>
 		
