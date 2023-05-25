@@ -78,12 +78,21 @@ public class HomeServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("utilisateur") != null)  {
 			Utilisateurs util = (Utilisateurs) session.getAttribute("utilisateur");
-			int id = util.getId();
+			int idUser = util.getId();
+			System.out.println(idUser);
 			try {
-//				List<Encheres> listeEncheres = EncheresManager.getInstance().getAllAuctionByUser(id);
+//				List<Encheres> listeEncheres = EncheresManager.getInstance().getAllAuctionByUser(idUser);
 //				
 //				request.setAttribute("listesEncheres", listeEncheres);
 				
+				List<ArticlesVendu> listesArticles = new ArrayList<ArticlesVendu>();;
+				try {
+					listesArticles = ArticlesVenduManager.getInstance().SelectByIdUser(idUser);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				request.setAttribute("listesArticles", listesArticles);
 				
 
 				List<Categories> listCategorie = new ArrayList<Categories>();

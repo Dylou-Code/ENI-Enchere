@@ -48,15 +48,15 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 			+ "from ARTICLES_VENDUS av \n"
 			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie"; */
 	
-	private static final String SELECT_BY_ID ="select av.no_article, nom_article, av.[description], date_debut_enchere, date_fin_enchere,\n"
+	private static final String SELECT_BY_ID ="select av.no_article, nom_article, av.[description], date_debut_encheres, date_fin_encheres,\n"
 			+ "prix_initial, prix_vente, u.*, c.*, etat_vente \n"
 			+ "from ARTICLES_VENDUS av \n"
 			+ "inner join UTILISATEURS u on u.no_utilisateur = av.no_utilisateur\n"
 			+ "inner join RETRAITS r on r .no_article = av.no_article\n"
 			+ "inner join CATEGORIES c on c.no_categorie = av.no_categorie where av.no_article= ?"; 
 	
-	private static final String SELECT_BY_ID_USER ="SELECT av.no_article, nom_article, av.[description], date_debut_enchere, date_fin_enchere,\n"
-			+ "prix_initial, prix_vente, u.*, c.*, etat_vente \n"
+	private static final String SELECT_BY_ID_USER ="SELECT av.no_article, nom_article, av.[description], date_debut_encheres, date_fin_encheres,\n"
+			+ "prix_initial, prix_vente, u.*, c.* \n"
 			+ "FROM ARTICLES_VENDUS av \n"
 			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = av.no_utilisateur\n"
 			+ "INNER JOIN RETRAITS r ON r .no_article = av.no_article\n"
@@ -247,18 +247,13 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 		try (Connection con = ConnectionProvider.connection()){
 			//On charge  et prépare la requête pour exécution
 			PreparedStatement pst = con.prepareStatement(SELECT_BY_ID_USER);
-			
 			pst.setInt(1, idUser);
 			//on execute la requete et récupère les élement qu'lle nou retourne 
-			ResultSet rs = pst.executeQuery();	
 			
-			/*
-			 * Pour chaque ligne de la liste retouné 
-			 * on crée un objet de type utilisateur qu'on va associé à chaque colonne de notre ligne 
-			 * puis on va ajouter l'ojet region à notre liste d'utilisateurs
-			 */
-			while (rs.next()) {
-				//initialisation d'un objet Article_Vendus				
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {	
+				System.out.println("test2");
 				
 				int idU = rs.getInt("no_utilisateur");
 				String lastName = rs.getString("nom");
@@ -274,14 +269,20 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 				Boolean admin = rs.getBoolean("administrateur");
 				Utilisateurs user = new Utilisateurs(idU, pseudo, lastName, lastName, email, phone, street, zipCode, city, password, credit, admin);
 				
+				System.out.println(user);
+				
 				int idC = rs.getInt("no_categorie");
 				String libelleC = rs.getString("libelle");
 				Categories categorie = new Categories(idC, libelleC);
+				
+				System.out.println(categorie);
 				
 				Retraits retrait = new Retraits();
 				retrait.setStreet(rs.getString("rue"));
 				retrait.setZipCode(rs.getString("code_postal"));
 				retrait.setCity(rs.getString("ville"));
+				
+				System.out.println(retrait);
 				
 				int idA = rs.getInt("no_article");
 				String nameA = rs.getString("nom_article");
@@ -292,11 +293,10 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 				int prixVente = rs.getInt("prix_vente");
 				ArticlesVendu article = new ArticlesVendu(idA, nameA, description, dateDebut, dateFin, prixDebut, prixVente, user, categorie, nameA, description, retrait);
 				
-				retrait.setArticle(article);
-				//ArticleVendu.setEtat_vente(rs.getString("etat_vente"));
+				System.out.println(article);
+				
 				listeArticlesByUser.add(article);
 			}
-			
 			//on retourne la liste d'utilisateur
 			return listeArticlesByUser ;
 		} 
