@@ -12,7 +12,7 @@
 </head>
 <body>
 <header>
-  <nav>    
+  <nav class="mt-3">    
 	    <div class="nav-content">
 	      <div class="logo">
 	        <a href="<%= request.getContextPath() %>/">ENI-ENCHERES</a>

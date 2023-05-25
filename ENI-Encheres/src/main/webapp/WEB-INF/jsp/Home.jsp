@@ -141,9 +141,6 @@
 				
 		  </div>
 		  
-<<<<<<< HEAD
-		  
-=======
 		  <div class="row row-cols-1 row-cols-md-4 g-4">
 			<c:forEach var="enchere" items="${listeEncheres }">
 		  		<div class="col">
@@ -168,7 +165,6 @@
 				
 				
 		  </div>
->>>>>>> 19b43a40e2e9da182fc39300ac62aad8d6d279c4
   
 		</div>
 		
