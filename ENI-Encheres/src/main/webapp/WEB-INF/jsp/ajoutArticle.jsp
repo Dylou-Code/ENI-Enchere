@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../layout/navigation.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -22,7 +21,7 @@
 </head>
 <body>
 
-	<!-- c:set permet d'ajouter la variable content du "layout.jsp" qui est le layout général du projet-->
+	<!-- c:set permet d'ajouter la variable content du "layout.jsp" qui est le layout gÃ©nÃ©ral du projet-->
 
 	<!-- Ajout du code de la page -->
 
@@ -44,9 +43,9 @@
 					<textarea class="form-control" id="exampleFormControlTextarea1"
 						rows="3" name="description" required></textarea>
 				</div>
-				<!-- gerer récupération des catégorie(boucle forEach) -->
+				<!-- gerer rÃ©cupÃ©ration des catÃ©gorie(boucle forEach) -->
 				<div>
-					<label for="categorie" class="filter-label">Catégories: </label> 
+					<label for="categorie" class="filter-label">CatÃ©gories: </label> 
 					<select name="categories" class="form-select" id="categorie-select">
 						<c:forEach var="categorie" items="${listCategorie}">
 							<option id="searchCategorie" value="${categorie.id}" selected>${categorie.name.toUpperCase()}</option>
@@ -62,19 +61,19 @@
 	  </div> -->
 
 				<div class="mb-3">
-					<label for="price" class="form-label">Mise à prix</label> <input
+					<label for="price" class="form-label">Mise Ã  prix</label> <input
 						type="number" class="form-control" aria-label="price"
 						name="prixInitial" required>
 				</div>
 
 				<div class="mb-3">
-					<p>Début enchère</p>
+					<p>DÃ©but enchÃ¨re</p>
 					<input type="date" class="form-control" aria-label="date"
 						name="dateStartEnchere" required>
 				</div>
 				<br>
 				<div class="mb-3">
-					<p>Fin enchère</p>
+					<p>Fin enchÃ¨re</p>
 					<input type="date" class="form-control" aria-label="date"
 						name="dateEndEnchere" required>
 				</div>

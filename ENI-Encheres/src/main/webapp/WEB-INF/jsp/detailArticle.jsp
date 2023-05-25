@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-=======
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
      <%@ include file="../layout/navigation.jsp" %> 
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -68,8 +64,8 @@
 		    </div>
 		    <br>
 		  </fieldset>
-		<form action="<%= request.getContextPath() %>/ModifierMonProfil" method="post">
-        	<button type="submit" class="btn btn-primary">Modifier mon profil</button>
+		<form action="<%= request.getContextPath() %>/Encheres" method="post">
+        	<button type="submit" class="btn btn-primary">Enchere</button>
     	</form>
     </div>
 </c:set>
