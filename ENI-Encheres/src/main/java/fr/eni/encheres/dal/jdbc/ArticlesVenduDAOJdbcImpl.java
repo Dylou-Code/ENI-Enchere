@@ -253,7 +253,6 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {	
-				System.out.println("test2");
 				
 				int idU = rs.getInt("no_utilisateur");
 				String lastName = rs.getString("nom");
@@ -269,20 +268,14 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 				Boolean admin = rs.getBoolean("administrateur");
 				Utilisateurs user = new Utilisateurs(idU, pseudo, lastName, lastName, email, phone, street, zipCode, city, password, credit, admin);
 				
-				System.out.println(user);
-				
 				int idC = rs.getInt("no_categorie");
 				String libelleC = rs.getString("libelle");
 				Categories categorie = new Categories(idC, libelleC);
-				
-				System.out.println(categorie);
 				
 				Retraits retrait = new Retraits();
 				retrait.setStreet(rs.getString("rue"));
 				retrait.setZipCode(rs.getString("code_postal"));
 				retrait.setCity(rs.getString("ville"));
-				
-				System.out.println(retrait);
 				
 				int idA = rs.getInt("no_article");
 				String nameA = rs.getString("nom_article");
@@ -292,8 +285,6 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 				int prixDebut = rs.getInt("prix_initial");
 				int prixVente = rs.getInt("prix_vente");
 				ArticlesVendu article = new ArticlesVendu(idA, nameA, description, dateDebut, dateFin, prixDebut, prixVente, user, categorie, nameA, description, retrait);
-				
-				System.out.println(article);
 				
 				listeArticlesByUser.add(article);
 			}

@@ -79,7 +79,6 @@ public class HomeServlet extends HttpServlet {
 		if (session != null && session.getAttribute("utilisateur") != null)  {
 			Utilisateurs util = (Utilisateurs) session.getAttribute("utilisateur");
 			int idUser = util.getId();
-			System.out.println(idUser);
 			try {
 //				List<Encheres> listeEncheres = EncheresManager.getInstance().getAllAuctionByUser(idUser);
 //				
