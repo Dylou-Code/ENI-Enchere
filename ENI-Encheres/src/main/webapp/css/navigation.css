@@ -8,15 +8,18 @@ nav{
   transition: all 0.4s ease;
 }
 
+nav a {
+	color: black;
+}
+
 nav.sticky{
   padding: 15px 20px;
-  background: #4070f4;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 nav .nav-content{
   height: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   display: flex;
   align-items: center;

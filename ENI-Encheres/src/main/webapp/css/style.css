@@ -1,7 +1,33 @@
+:root {
+	  --ff-base: 'Poppins', sans-serif;
+	
+}
+
+
+body {
+	font-family: var(--ff-base);
+    font-size: 16px;
+}
+
 
 .container {
-	max-width: 1600px;
+	max-width: 1400px;
 	padding: 1rem;
+}
+
+.container-infos {
+	max-width: 500px;
+	margin: auto;
+}
+
+.container-inscription {
+	max-width: 900px;
+	margin: auto;
+}
+
+.container-article {
+	max-width: 600px;
+	margin: auto;
 }
 
 
@@ -13,7 +39,7 @@
 	margin: 35px 0;
 }
 .filter {
-	max-width: 550px;
+	max-width: 410px;
 }
 
 
@@ -55,13 +81,31 @@
 
 /* PAGE CONNEXION */
 .form-connexion-item{
-	margin: 0 auto;
+	
+	margin: 110px auto;
+	width: 350px;
 }
 
 .form-connexion {
 	display: flex;
     flex-direction: column;
-    max-width: 300px;
+}
+
+.forgot-connection {
+	text-align: center;
+	
+}
+
+.forgot-connection a{
+	text-decoration: none;
+	color: black;
+}
+
+
+.forgot-connection a:hover{
+  opacity: 1;
+  text-decoration: underline;
+  color: #0446EF;
 }
 
 .container-connexion{
@@ -69,3 +113,50 @@
     flex-direction: column;
 }
 
+.profil-form {
+	text-align: center;
+}
+
+/* 404 PAGE*/
+.wrapper-404 {
+	width: 600px;
+    margin: 0 auto;
+}
+
+.image404 {
+	max-width: 100%;
+}
+
+/*FOOTER*/
+
+footer .bottom-details{
+  width: 100%;
+  background:#0446EF;
+ 
+}
+
+footer .bottom-details .bottom_text{
+  max-width: 1250px;
+  margin: auto;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-details .bottom_text span,
+.bottom-details .bottom_text a{
+  font-size: 14px;
+  font-weight: 300;
+  color: #fff;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.bottom-details .bottom_text a:hover{
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.bottom-details .bottom_text a{
+  margin-right: 10px;
+}
