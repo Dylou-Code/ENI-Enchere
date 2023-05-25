@@ -95,7 +95,7 @@ public class HomeServlet extends HttpServlet {
 				
 
 				List<Categories> listCategorie = new ArrayList<Categories>();
-				listCategorie.add(new Categories(0, "Toutes"));
+				listCategorie.add(new Categories(0, null));
 
 				try {
 
@@ -125,7 +125,7 @@ public class HomeServlet extends HttpServlet {
 			request.setAttribute("listesArticles", listesArticles);
 
 			List<Categories> listCategorie = new ArrayList<Categories>();
-			listCategorie.add(new Categories(0, "Toutes"));
+			listCategorie.add(new Categories(0, null));
 
 			try {
 

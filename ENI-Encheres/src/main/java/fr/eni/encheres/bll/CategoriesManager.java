@@ -25,5 +25,9 @@ public class CategoriesManager {
 	public List<Categories> SelectALL() throws DALException{
 		return categoriesDAO.SelectALL();
 	}
+	
+	public Categories SelectById(int id) throws DALException{
+		return categoriesDAO.SelectById(id);
+	}
 
 }

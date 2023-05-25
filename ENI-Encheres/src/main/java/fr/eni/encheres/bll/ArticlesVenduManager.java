@@ -32,10 +32,16 @@ public class ArticlesVenduManager {
 	public List<ArticlesVendu> SelectByIdUser(int idUser) throws DALException{
 		return articleVenduDAO.SelectByIdUser(idUser);
 	}
+	
+	public ArticlesVendu SelectByIdArticle(int idArticle) throws DALException{
+		return articleVenduDAO.SelectById(idArticle);
+	}
 
-	//a faire Dylan
-	public void ajouterArticle(ArticlesVendu article) {
-		// TODO Auto-generated method stub
+	public void ajouterArticle(ArticlesVendu article) throws DALException {
+		articleVenduDAO.insertArticle(article);
+	}
 
+	public int selectLastInsertId() throws DALException {
+		return articleVenduDAO.selectLastInsertId();
 	}
 }

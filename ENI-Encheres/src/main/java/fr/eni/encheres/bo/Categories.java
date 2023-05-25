@@ -5,6 +5,7 @@ public class Categories {
 
 	private int id;
 	private String name;
+	private String defaultValue = null;
 	
 	public Categories() {
 		super();
@@ -16,7 +17,13 @@ public class Categories {
 		this.name = name;
 	}
 	
-
+	public Categories(int id, String name, String defaultValue) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.defaultValue = defaultValue;
+	}	
+	
 
 	public int getId() {
 		return id;

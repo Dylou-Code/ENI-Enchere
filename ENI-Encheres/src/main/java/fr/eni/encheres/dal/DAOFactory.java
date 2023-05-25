@@ -18,7 +18,7 @@ public class DAOFactory {
 	private static UtilisateursDAO utilisateurDAO;
 	private static ArticlesVenduDAO articlesDAO;
 	private static EncheresDAO encheresDAO;
-	private static RetraitsDAO retraitDAO;
+	private static RetraitsDAO retraitsDAO;
 	private static CategoriesDAO categorieDAO;
 	
 	
@@ -53,10 +53,10 @@ public class DAOFactory {
 	}
 	
 	public static RetraitsDAO getRetraitsDAO() {
-		if (retraitDAO == null) {
-			retraitDAO = new RetraitsDAOJdbcImpl();
+		if (retraitsDAO == null) {
+			retraitsDAO = new RetraitsDAOJdbcImpl();
 		}
-		return retraitDAO;
+		return retraitsDAO;
 	}
 	
 }

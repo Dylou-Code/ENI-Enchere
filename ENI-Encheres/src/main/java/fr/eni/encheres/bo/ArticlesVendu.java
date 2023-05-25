@@ -61,6 +61,19 @@ public class ArticlesVendu {
 
 		this.retrait = retrait;
 	}
+	
+	public ArticlesVendu(String articleName, String description, LocalDate dateStartEnchere,
+			LocalDate dateEndEnchere, int prixInitial, Utilisateurs utilisateur, Categories categorie) {
+		super();
+		this.articleName = articleName;
+		this.description = description;
+		this.dateStartEnchere = dateStartEnchere;
+		this.dateEndEnchere = dateEndEnchere;
+		this.prixInitial = prixInitial;
+		this.retrait = retrait;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+	}
 
 
 	public int getNo_article() {

@@ -2,10 +2,10 @@ package fr.eni.encheres.bo;
 
 public class Retraits {
 	
+	private ArticlesVendu article;
 	private String street;
 	private String zipCode;
 	private String city;
-	private ArticlesVendu article;
 	
 	//le constructeur par défaut 
 	public Retraits() {
@@ -16,6 +16,14 @@ public class Retraits {
 		super();
 		this.article = article;
 		this.street = street;
+		this.zipCode = zipCode;
+		this.city = city;
+	}
+	
+	public Retraits(String street, String zipCode, String city) {
+		super();
+		this.street = street;
+		this.zipCode = zipCode;
 		this.city = city;
 	}
 
@@ -53,7 +61,9 @@ public class Retraits {
 
 	@Override
 	public String toString() {
-		return "Retraits [street=" + street + ", zipCode=" + zipCode + ", city=" + city + ", article=" + article + "]";
+		return "Retraits [article=" + article + ", street=" + street + ", zipCode=" + zipCode + ", city=" + city + "]";
 	}
+
+	
 	
 }

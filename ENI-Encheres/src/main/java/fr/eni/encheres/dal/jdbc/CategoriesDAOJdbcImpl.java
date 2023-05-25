@@ -8,13 +8,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 import fr.eni.encheres.bo.Categories;
+import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.connection.ConnectionProvider;
 import fr.eni.encheres.dal.interfaces.CategoriesDAO;
 import fr.eni.encheres.exceptions.DALException;
 
 public class CategoriesDAOJdbcImpl implements CategoriesDAO {
 	
-	private static final String SELECT_ALL ="Select * from CATEGORIES"; 
+	private static final String SELECT_ALL ="Select * from CATEGORIES";
+	private static final String SELECT_BY_ID ="Select * from CATEGORIES WHERE no_categorie = ?"; 
 	
 	@Override
 	public List<Categories> SelectALL() throws DALException {
@@ -62,9 +64,25 @@ public class CategoriesDAOJdbcImpl implements CategoriesDAO {
 	}
 
 	@Override
-	public Categories SelectById(int no_categorie) {
-		// TODO Auto-generated method stub
-		return null;
+	public Categories SelectById(int id) throws DALException {
+		Categories resultat = null;
+		
+		try(Connection con = ConnectionProvider.connection()){ 
+			PreparedStatement pst = con.prepareStatement(SELECT_BY_ID);
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				String libelle = rs.getString("libelle");
+						
+				resultat = new Categories(id, libelle);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Impossible de sélectionner la categorie ayant l'id " + id, e);
+		}
+		return resultat;
 	}
 
 	@Override

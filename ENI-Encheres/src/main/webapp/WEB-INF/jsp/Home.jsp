@@ -47,9 +47,10 @@
 					<label for="categorie" class="filter-label">Catégories: </label>
 					<select name="categories"  class="form-select" id="categorie-select">
 					   <c:forEach var="categorie" items="${listCategorie}">
-					    	<option id="searchCategorie" value="${categorie.id}" selected>${categorie.name.toUpperCase()}</option>
+					    	<option id="searchCategorie" value="${categorie.id}"selected>${categorie.name.toUpperCase()}</option>
 					    </c:forEach>
 					</select>
+					
 				</div>
 				
 			</div>
@@ -130,8 +131,7 @@
 						      <p class="text"> <span class="fw-bold">Fin de l'enchere : </span>${article.dateEndEnchere }</p>
 						    </div>
 						    
-						     <a href="<%= request.getContextPath() %>/detailArticle" class="btn btn-primary">Voir plus</a>
-						    <%--  <a href="${request.contextPath}/detailArticle?articleId=${article.articleId}" class="btn btn-primary">Détails</a>  --%>
+						   <a href="<%=request.getContextPath()%>/detailArticle?articleId=${article.no_article}" class="btn btn-primary">Voir plus</a>
 						    
 				    	</div>
 				  	</div>

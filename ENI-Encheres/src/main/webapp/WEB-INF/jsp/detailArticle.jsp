@@ -1,27 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@ include file="../layout/navigation.jsp" %> 
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Accueil</title>
-   
-   	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/navigation.css">
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/reset.css">
-     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/style.css">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<title></title>
-</head>
-<body>
 
+<%-- <jsp:include page="../layout/layoutConnecte.jsp" /> --%>
+<jsp:include page="../layout/layout.jsp" />
 
-	<section class="main">
+<!-- Ajouter ce code dans les différentes pages-->
+	<c:set var="content">
+    <div class="container">
+
+		  <fieldset disabled>
+		    <div class="mb-6">
+		      <label for="disabledTextInput" class="form-label">Catégorie :</label>
+		      <input type="text" id="categorie" class="form-control" value="${categorie}">
+		    </div>
+		    
+		    <div class="mb-6">
+		      <label for="disabledTextInput" class="form-label">Nom :</label>
+		      <input type="text" id="OutPutNom" class="form-control" value="${nom}">
+		    </div>
+		    
+		    <div class="mb-6">
+		      <label for="disabledTextInput" class="form-label">Prénom :</label>
+		      <input type="text" id="OutPutPrenom" class="form-control" value="${prenom}">
+		    </div>
+		    
+		    <div class="mb-6">
+		      <label for="disabledTextInput" class="form-label">Email :</label>
+		      <input type="text" id="OutPutEmail" class="form-control" value="${email}">
+		    </div>
+		    
+		    <div class="mb-6">
+		      <label for="disabledTextInput" class="form-label">Téléphone :</label>
+		      <input type="text" id="OutPutTelephone" class="form-control" value="${telephone}">
+		    </div>
+		    
+		    <div class="mb-6">
+		      <label for="disabledTextInput" class="form-label">Rue :</label>
+		      <input type="text" id="OutPutRue" class="form-control" value="${rue}">
+		    </div>
+		    
+		    <div class="mb-6">
+		      <label for="disabledTextInput" class="form-label">Code Postal :</label>
+		      <input type="text" id="OutPutZip" class="form-control" value="${code_postal}">
+		    </div>
+		    
+		    <div class="mb-6">
+		      <label for="disabledTextInput" class="form-label">Ville :</label>
+		      <input type="text" id="OutPutVille" class="form-control" value="${ville}">
+		    </div>
+		    <br>
+		  </fieldset>
+		<form action="<%= request.getContextPath() %>/ModifierMonProfil" method="post">
+        	<button type="submit" class="btn btn-primary">Modifier mon profil</button>
+    	</form>
+    </div>
+</c:set>
+	<!-- <section class="main">
 		<div class="title">
 		 		<h1>Details vente</h1>
-		 	</div>
-		<div class="container">
+		 	</div> -->
+	<!-- 	<div class="container">
 			<div class="details">
 				<h3>Titre de l'article Vendu</h3>
 				<p class="text-description">Description :</p>
@@ -34,7 +72,7 @@
 				<p>Vendeur :  </p>
 				
 				<button type="submit" class="btn btn-success">Encherir</button>
-			</div>
+			</div> -->
 		
 		
 			<!-- Gestion erreurs des champs
@@ -43,11 +81,3 @@
 					<c:out value="${erreur}"></c:out>
 				</div>
 			</c:if>-->
-		
-		</div>
-	
-	</section>
-	
-	
-</body>
-</html>

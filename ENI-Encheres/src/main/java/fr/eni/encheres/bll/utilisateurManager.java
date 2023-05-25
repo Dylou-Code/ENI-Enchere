@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.jasper.tagplugins.jstl.Util;
+
+import fr.eni.encheres.bo.ArticlesVendu;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.interfaces.UtilisateursDAO;
@@ -136,6 +139,9 @@ public class utilisateurManager {
     public String delete(String pseudo) throws DALException {
     	utilisateurDAO.deleteUser(pseudo);
     	return "Le compte a été supprimé avec succès";
-	}	
-	
+	}
+    
+    public Utilisateurs SelectById(int idUser) throws DALException{
+		return utilisateurDAO.getUserById(idUser);
+	}
 }
