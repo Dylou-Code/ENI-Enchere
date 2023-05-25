@@ -27,5 +27,44 @@
 }
 
 .filter-search {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
 	padding: 15px 0;
 }
+
+.filter-article {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 25px 0;
+}
+
+.filter-article-item:nth-child(2) {
+	padding-left: 35px; 
+}
+
+.filter-article-choice {
+	margin-left: 15px;
+}
+
+.search-btn{
+	margin-left: 10px;
+}
+
+/* PAGE CONNEXION */
+.form-connexion-item{
+	margin: 0 auto;
+}
+
+.form-connexion {
+	display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+.container-connexion{
+	display: flex;
+    flex-direction: column;
+}
+

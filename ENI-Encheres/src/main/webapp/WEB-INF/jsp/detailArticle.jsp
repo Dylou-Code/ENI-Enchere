@@ -31,7 +31,7 @@
 				<p>Fin de l'enchère : </p>
 				<p>Retrait :</p>
 				<p>Vendeur :</p>
-				<p>Vendeur :   Dylan Carribean Boy</p>
+				<p>Vendeur :  </p>
 				
 				<button type="submit" class="btn btn-success">Encherir</button>
 			</div>
