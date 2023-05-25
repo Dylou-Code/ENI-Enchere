@@ -6,7 +6,7 @@
 
 <!-- Ajouter ce code dans les différentes pages-->
 	<c:set var="content">
-    <div class="container">
+    <div class="container-infos">
 
 		  <fieldset disabled>
 		    <div class="mb-6">
@@ -50,7 +50,7 @@
 		    </div>
 		    <br>
 		  </fieldset>
-		<form action="<%= request.getContextPath() %>/ModifierMonProfil" method="post">
+		<form class="profil-form" action="<%= request.getContextPath() %>/ModifierMonProfil" method="post">
         	<button type="submit" class="btn btn-primary">Modifier mon profil</button>
     	</form>
     </div>

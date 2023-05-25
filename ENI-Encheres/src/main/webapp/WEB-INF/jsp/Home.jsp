@@ -19,7 +19,7 @@
 
 
     
-  <!-- c:set permet d'ajouter la variable content du "layout.jsp" qui est le layout général du projet-->
+  <!-- c:set permet d'ajouter la variable content du "layout.jsp" qui est le layout gÃ©nÃ©ral du projet-->
 	<main class="main">
 	
 	     
@@ -44,7 +44,7 @@
 				</div>
 				
 				<div class="filter-categorie">
-					<label for="categorie" class="filter-label">Catégories: </label>
+					<label for="categorie" class="filter-label">CatÃ©gories: </label>
 					<select name="categories"  class="form-select" id="categorie-select">
 					   <c:forEach var="categorie" items="${listCategorie}">
 					    	<option id="searchCategorie" value="${categorie.id}" selected>${categorie.name.toUpperCase()}</option>
@@ -60,9 +60,9 @@
 				  <input type=checkbox class="filter-article-choice" id="age1" name="age" value="30">
 				  <label for="vente1">Encheres ouvertes</label><br>
 				  <input type="checkbox" class="filter-article-choice" id="age2" name="age" value="60">
-				  <label for="vente2">Mes enchères</label><br>  
+				  <label for="vente2">Mes enchÃ¨res</label><br>  
 				  <input type="checkbox" class="filter-article-choice" id="age3" name="age" value="100">
-				  <label for="vente3">Mes enchères reportées</label><br><br>
+				  <label for="vente3">Mes enchÃ¨res reportÃ©es</label><br><br>
 				</div>
 				
 			
@@ -72,9 +72,9 @@
 				  <input type=checkbox name="vente" class="filter-article-choice" id="age1" name="age" value="30">
 				  <label for="vente1">Mes ventes en cours</label><br>
 				  <input type="checkbox"  name="vente" class="filter-article-choice" id="age2" name="age" value="60">
-				  <label for="vente2">Mes ventes non débutés</label><br>  
+				  <label for="vente2">Mes ventes non dÃ©butÃ©s</label><br>  
 				  <input type="checkbox"  name="vente" class="filter-article-choice" id="age3" name="age" value="100">
-				  <label for="vente3">Ventes terminées</label><br><br>
+				  <label for="vente3">Ventes terminÃ©es</label><br><br>
 				</div>
 			</div>
 			
@@ -96,7 +96,7 @@
 						</div>
 						
 						<div class="filter-categorie">
-							<label for="categorie" class="filter-label">Catégories: </label>
+							<label for="categorie" class="filter-label">CatÃ©gories: </label>
 							<select name="categories"  class="form-select" id="categorie-select">
 							   <c:forEach var="categorie" items="${listCategorie}">
 							    	<option id="searchCategorie" value="${categorie.id}" selected>${categorie.name.toUpperCase()}</option>
@@ -125,13 +125,13 @@
 						<img src="<%= request.getContextPath()%>/img/Peugeot_208.jpg" class="card-img-top" alt="">
 					    <div class="card-body">
 					      <h5 class="card-title" > ${article.articleName }</h5>
-					      <p class="card-text"> Prix : ${article.prixInitial }</p>
+					      <p class="card-text"> Prix : <span class="fw-bold">${article.prixInitial }</span></p>
 						    <div class="card-text">
 						      <p class="text"> <span class="fw-bold">Fin de l'enchere : </span>${article.dateEndEnchere }</p>
 						    </div>
 						    
 						     <a href="<%= request.getContextPath() %>/detailArticle" class="btn btn-primary">Voir plus</a>
-						    <%--  <a href="${request.contextPath}/detailArticle?articleId=${article.articleId}" class="btn btn-primary">Détails</a>  --%>
+						    <%--  <a href="${request.contextPath}/detailArticle?articleId=${article.articleId}" class="btn btn-primary">DÃ©tails</a>  --%>
 						    
 				    	</div>
 				  	</div>
@@ -140,7 +140,7 @@
 				
 				
 		  </div>
-		  
+
 		  <div class="row row-cols-1 row-cols-md-4 g-4">
 			<c:forEach var="enchere" items="${listeEncheres }">
 		  		<div class="col">
@@ -156,7 +156,7 @@
 						    </div>
 						    
 						     <a href="<%= request.getContextPath() %>/detailArticle" class="btn btn-primary">Encherir</a>
-						    <%--  <a href="${request.contextPath}/detailArticle?articleId=${article.articleId}" class="btn btn-primary">Détails</a>  --%>
+						    <%--  <a href="${request.contextPath}/detailArticle?articleId=${article.articleId}" class="btn btn-primary">DÃ©tails</a>  --%>
 						    
 				    	</div>
 				  	</div>
@@ -169,10 +169,21 @@
 		</div>
 		
 	</main>
-  <!-- Ajout du code de la page -->
-   
+	
+	<!-- <footer class="mt-5">
+  
+      
+    <div class="bottom-details">
+      <div class="bottom_text">
+        <span class="copyright_text">Copyright Â© 2023 <a href="#">ENI.</a>All rights reserved</span>
+        <span class="policy_terms">
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms & condition</a>
+        </span>
+      </div>
+    </div>
+  </footer> -->
 
-	<!-- ajout de la condition -->
 	    	
 </body>
 </html>
