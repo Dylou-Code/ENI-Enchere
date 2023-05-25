@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ include file="../layout/navigation.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,24 +12,10 @@
   </head>
 
 <body>
-	<!-- Permet d'ajouter le code de la navigation-->
-	<%@ include file="../layout/navigation.jsp" %>
 	
-	
-	<!-- Va permettre de contenir toutes nos pages-->
 	<div class="container">
 		<jsp:include page="${content}" />
 	</div>
-	
-	<!-- Ajouter ce code dans les différentes pages
-	<c:set var="content">
-    <div class="container">
-    	<p>Exemple</p>
-        <h1>Accueil</h1>
-        <p>Bienvenue sur notre application d'enchères !</p>
-        
-    </div>
-</c:set>-->
 	
 </body>
 </html>

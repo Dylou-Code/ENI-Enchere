@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
      <%@ include file="../layout/navigation.jsp" %> 
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -25,10 +24,10 @@
 			<div class="details">
 				<h3>Titre de l'article Vendu</h3>
 				<p class="text-description">Description :</p>
-				<p>Catégorie :</p>
+				<p>CatÃ©gorie :</p>
 				<p>Meilleure offre :</p>
-				<p>Mise à prix :</p>
-				<p>Fin de l'enchère : </p>
+				<p>Mise Ã  prix :</p>
+				<p>Fin de l'enchÃ¨re : </p>
 				<p>Retrait :</p>
 				<p>Vendeur :</p>
 				<p>Vendeur :  </p>
