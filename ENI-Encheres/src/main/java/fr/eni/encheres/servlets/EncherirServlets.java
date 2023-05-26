@@ -62,11 +62,13 @@ public class EncherirServlets extends HttpServlet {
 				request.setAttribute("meilleureOffre", article.getPrixVente());
 				request.setAttribute("hiddenIdArticle", idArticle);
 				request.getRequestDispatcher("/WEB-INF/jsp/encherir.jsp").forward(request, response);
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+			request.getRequestDispatcher("/WEB-INF/jsp/encherir.jsp").forward(request, response);
+
 		} else {
 			response.sendRedirect("Connexion");
 		}
