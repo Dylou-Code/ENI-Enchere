@@ -6,7 +6,7 @@
 
 <!-- Ajouter ce code dans les différentes pages-->
 	<c:set var="content">
-    <div class="container">
+    <div class="container-profil">
 
 		  <fieldset disabled>
 		    <div class="mb-6">
