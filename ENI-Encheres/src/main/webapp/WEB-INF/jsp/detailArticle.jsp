@@ -1,34 +1,16 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-     <%@ include file="../layout/navigation.jsp" %> 
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Accueil</title>
-   
-   	<link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/navigation.css">
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/reset.css">
-     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath()%>/css/style.css">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<title></title>
-</head>
-<body>
 
 <%-- <jsp:include page="../layout/layoutConnecte.jsp" /> --%>
 <jsp:include page="../layout/layout.jsp" />
 
-<!-- Ajouter ce code dans les diffï¿½rentes pages-->
+<!-- Ajouter ce code dans les différentes pages-->
 	<c:set var="content">
     <div class="container">
 
 		  <fieldset disabled>
 		    <div class="mb-6">
-		      <label for="disabledTextInput" class="form-label">Catï¿½gorie :</label>
+		      <label for="disabledTextInput" class="form-label">Catégorie :</label>
 		      <input type="text" id="categorie" class="form-control" value="${categorie}">
 		    </div>
 		    
@@ -38,7 +20,7 @@
 		    </div>
 		    
 		    <div class="mb-6">
-		      <label for="disabledTextInput" class="form-label">Prï¿½nom :</label>
+		      <label for="disabledTextInput" class="form-label">Prénom :</label>
 		      <input type="text" id="OutPutPrenom" class="form-control" value="${prenom}">
 		    </div>
 		    
@@ -48,7 +30,7 @@
 		    </div>
 		    
 		    <div class="mb-6">
-		      <label for="disabledTextInput" class="form-label">Tï¿½lï¿½phone :</label>
+		      <label for="disabledTextInput" class="form-label">Téléphone :</label>
 		      <input type="text" id="OutPutTelephone" class="form-control" value="${telephone}">
 		    </div>
 		    
@@ -68,8 +50,8 @@
 		    </div>
 		    <br>
 		  </fieldset>
-		<form action="<%= request.getContextPath() %>/ModifierMonProfil" method="post">
-        	<button type="submit" class="btn btn-primary">Modifier mon profil</button>
+		<form action="<%=request.getContextPath()%>/Encherir?articleId=${idArticle}" method="post">
+        	<button type="submit" class="btn btn-primary">Enchérir</button>
     	</form>
     </div>
 </c:set>
@@ -81,10 +63,10 @@
 			<div class="details">
 				<h3>Titre de l'article Vendu</h3>
 				<p class="text-description">Description :</p>
-				<p>CatÃ©gorie :</p>
+				<p>Catégorie :</p>
 				<p>Meilleure offre :</p>
-				<p>Mise Ã  prix :</p>
-				<p>Fin de l'enchÃ¨re : </p>
+				<p>Mise à prix :</p>
+				<p>Fin de l'enchère : </p>
 				<p>Retrait :</p>
 				<p>Vendeur :</p>
 				<p>Vendeur :  </p>

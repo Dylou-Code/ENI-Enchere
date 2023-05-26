@@ -8,7 +8,7 @@ import fr.eni.encheres.exceptions.DALException;
 public abstract interface EncheresDAO {
 	
 
-	public List<Encheres> getAllAuctions() throws DALException;
-	public List<Encheres> getAllAuctionsByIdUser(int idUser) throws DALException;
-	public void insertAuction(Encheres enchere) throws DALException;
+	public abstract List<Encheres> getAllAuctions() throws DALException;
+	public abstract List<Encheres> getAllAuctionsByIdUser(int idUser) throws DALException;
+	public abstract void insertAuction(Encheres enchere) throws DALException;
 }

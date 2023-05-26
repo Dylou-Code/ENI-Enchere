@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.sql.Date;
 
 import fr.eni.encheres.bo.Encheres;
@@ -28,7 +29,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 			
 			while(rs.next()) {
 				int id = rs.getInt("no_enchere");
-				Date date = rs.getDate("date_enchere");
+				LocalDate date = LocalDate.parse(rs.getString("date_enchere"));
 				int montant = rs.getInt("montant_enchere");
 				int idArticle = rs.getInt("no_article");
 				int idUser = rs.getInt("no_utilisateur");
@@ -58,7 +59,8 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 			
 			while(rs.next()) {
 				int id = rs.getInt("no_enchere");
-				Date date = rs.getDate("date_enchere");
+				java.sql.Date dateSql = rs.getDate("date_enchere");
+				LocalDate date = dateSql.toLocalDate();
 				int montant = rs.getInt("montant_enchere");
 				int idArticle = rs.getInt("no_article");
 						
@@ -76,8 +78,9 @@ public class EncheresDAOJdbcImpl implements EncheresDAO{
 
 	
 	public void insertAuction(Encheres enchere) throws DALException {
-		java.sql.Date sqlDate = new java.sql.Date(enchere.getDate().getTime());
 		try(Connection con = ConnectionProvider.connection()){
+			LocalDate localDate = enchere.getDate();
+			java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
 				PreparedStatement pStmt = con.prepareStatement(INSERT_AUCTION, Statement.RETURN_GENERATED_KEYS);
 				pStmt.setDate(1, sqlDate);
 				pStmt.setInt(2, enchere.getPrice());

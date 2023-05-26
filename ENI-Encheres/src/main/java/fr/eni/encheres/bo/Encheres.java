@@ -1,17 +1,18 @@
 package fr.eni.encheres.bo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Encheres {
 	
 	private int id;
-	private Date date;
+	private LocalDate date;
 	private int price;
 	private int idArticle;
 	private int idUser;
 	
 	
-	public Encheres(int id, Date date, int price, int idArticle, int idUser) {
+	public Encheres(int id, LocalDate date, int price, int idArticle, int idUser) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -20,7 +21,7 @@ public class Encheres {
 		this.idUser = idUser;
 	}
 	
-	public Encheres(Date date, int price, int idArticle, int idUser) {
+	public Encheres(LocalDate date, int price, int idArticle, int idUser) {
 		super();
 		this.date = date;
 		this.price = price;
@@ -39,12 +40,12 @@ public class Encheres {
 	}
 
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -76,5 +77,11 @@ public class Encheres {
 
 	public void setIdArticle(int idArticle) {
 		this.idArticle = idArticle;
+	}
+
+	@Override
+	public String toString() {
+		return "Encheres [id=" + id + ", date=" + date + ", price=" + price + ", idArticle=" + idArticle + ", idUser="
+				+ idUser + "]";
 	}
 }
