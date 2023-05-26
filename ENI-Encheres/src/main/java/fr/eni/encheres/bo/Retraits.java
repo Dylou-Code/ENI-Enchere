@@ -61,7 +61,7 @@ public class Retraits {
 
 	@Override
 	public String toString() {
-		return "Retraits [article=" + article + ", street=" + street + ", zipCode=" + zipCode + ", city=" + city + "]";
+		return street + " " + zipCode + " " + city;
 	}
 
 	

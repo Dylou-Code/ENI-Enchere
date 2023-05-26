@@ -1,33 +1,7 @@
-:root {
-	  --ff-base: 'Poppins', sans-serif;
-	
-}
-
-
-body {
-	font-family: var(--ff-base);
-    font-size: 16px;
-}
-
 
 .container {
-	max-width: 1400px;
+	max-width: 1600px;
 	padding: 1rem;
-}
-
-.container-infos {
-	max-width: 500px;
-	margin: auto;
-}
-
-.container-inscription {
-	max-width: 900px;
-	margin: auto;
-}
-
-.container-article {
-	max-width: 600px;
-	margin: auto;
 }
 
 
@@ -39,7 +13,7 @@ body {
 	margin: 35px 0;
 }
 .filter {
-	max-width: 410px;
+	max-width: 550px;
 }
 
 
@@ -81,31 +55,13 @@ body {
 
 /* PAGE CONNEXION */
 .form-connexion-item{
-	
-	margin: 110px auto;
-	width: 350px;
+	margin: 0 auto;
 }
 
 .form-connexion {
 	display: flex;
     flex-direction: column;
-}
-
-.forgot-connection {
-	text-align: center;
-	
-}
-
-.forgot-connection a{
-	text-decoration: none;
-	color: black;
-}
-
-
-.forgot-connection a:hover{
-  opacity: 1;
-  text-decoration: underline;
-  color: #0446EF;
+    max-width: 300px;
 }
 
 .container-connexion{
@@ -113,50 +69,3 @@ body {
     flex-direction: column;
 }
 
-.profil-form {
-	text-align: center;
-}
-
-/* 404 PAGE*/
-.wrapper-404 {
-	width: 600px;
-    margin: 0 auto;
-}
-
-.image404 {
-	max-width: 100%;
-}
-
-/*FOOTER*/
-
-footer .bottom-details{
-  width: 100%;
-  background:#0446EF;
- 
-}
-
-footer .bottom-details .bottom_text{
-  max-width: 1250px;
-  margin: auto;
-  padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.bottom-details .bottom_text span,
-.bottom-details .bottom_text a{
-  font-size: 14px;
-  font-weight: 300;
-  color: #fff;
-  opacity: 0.8;
-  text-decoration: none;
-}
-
-.bottom-details .bottom_text a:hover{
-  opacity: 1;
-  text-decoration: underline;
-}
-
-.bottom-details .bottom_text a{
-  margin-right: 10px;
-}

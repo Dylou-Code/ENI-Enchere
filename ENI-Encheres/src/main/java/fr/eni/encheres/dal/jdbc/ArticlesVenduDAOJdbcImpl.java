@@ -79,7 +79,7 @@ public class ArticlesVenduDAOJdbcImpl implements ArticlesVenduDAO{
 			pStmt.setDate(3,Date.valueOf(article.getDateStartEnchere()));
 			pStmt.setDate(4,Date.valueOf(article.getDateEndEnchere()));
 			pStmt.setInt(5, article.getPrixInitial());
-			pStmt.setInt(6, article.getPrixVente());
+			pStmt.setInt(6, article.getPrixInitial());
 			pStmt.setInt(7, article.getUtilisateur().getId());
 			pStmt.setInt(8, article.getCategorie().getId());
 			
