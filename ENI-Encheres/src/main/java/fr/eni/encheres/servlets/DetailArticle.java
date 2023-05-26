@@ -49,6 +49,7 @@ public class DetailArticle extends HttpServlet {
 				request.setAttribute("rue", article.getRetrait().getStreet());
 				request.setAttribute("code_postal", article.getRetrait().getZipCode());
 				request.setAttribute("ville", article.getRetrait().getCity());
+				request.setAttribute("idArticle", article.getNo_article());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

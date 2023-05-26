@@ -34,4 +34,8 @@ public class EncheresManager {
 	public List<Encheres> getAllAuctionByUser(int id) throws DALException{
 		return enchereDAO.getAllAuctionsByIdUser(id);
 	}
+	
+	public void insert(Encheres enchere) throws DALException{
+		enchereDAO.insertAuction(enchere);
+	}
 }

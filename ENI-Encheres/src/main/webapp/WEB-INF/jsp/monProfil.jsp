@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 
+<%-- <jsp:include page="../layout/layoutConnecte.jsp" /> --%>
 <jsp:include page="../layout/layout.jsp" />
 
-<!-- Ajouter ce code dans les diffÃ©rentes pages-->
+<!-- Ajouter ce code dans les différentes pages-->
 	<c:set var="content">
-    <div class="container-infos">
+    <div class="container-profil">
 
 		  <fieldset disabled>
 		    <div class="mb-6">
@@ -19,7 +20,7 @@
 		    </div>
 		    
 		    <div class="mb-6">
-		      <label for="disabledTextInput" class="form-label">PrÃ©nom :</label>
+		      <label for="disabledTextInput" class="form-label">Prénom :</label>
 		      <input type="text" id="OutPutPrenom" class="form-control" value="${utilisateur.firstName}">
 		    </div>
 		    
@@ -29,7 +30,7 @@
 		    </div>
 		    
 		    <div class="mb-6">
-		      <label for="disabledTextInput" class="form-label">TÃ©lÃ©phone :</label>
+		      <label for="disabledTextInput" class="form-label">Téléphone :</label>
 		      <input type="text" id="OutPutTelephone" class="form-control" value="${utilisateur.phoneNumber}">
 		    </div>
 		    
@@ -49,7 +50,7 @@
 		    </div>
 		    <br>
 		  </fieldset>
-		<form class="profil-form" action="<%= request.getContextPath() %>/ModifierMonProfil" method="post">
+		<form action="<%= request.getContextPath() %>/ModifierMonProfil" method="post">
         	<button type="submit" class="btn btn-primary">Modifier mon profil</button>
     	</form>
     </div>
